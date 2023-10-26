@@ -1,0 +1,4 @@
+# Cron
+requests~=2.31.0
+aiohttp~=3.8.4
+APScheduler~=3.9.1

@@ -1,0 +1,6 @@
+from fastapi import APIRouter
+
+from icon_stats.api.v1.endpoints import token_stats
+
+api_router = APIRouter()
+api_router.include_router(token_stats.router)

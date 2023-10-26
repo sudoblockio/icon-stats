@@ -1,0 +1,27 @@
+{
+  "result": "200",
+  "description": "success",
+  "totalData": null,
+  "data": [
+    {
+      "marketName": "coinmarketcap",
+      "tradeName": "ethusd",
+      "createDate": "2023-09-26T07:30:01.000+0000",
+      "price": "1588.37506825361",
+      "prePrice": "1587.389578730227",
+      "dailyRate": "0.60",
+      "volume": "3704027114.7413745",
+      "marketCap": "190970129397.29205"
+    },
+    {
+      "marketName": "coinmarketcap",
+      "tradeName": "icxusd",
+      "createDate": "2023-09-26T07:30:01.000+0000",
+      "price": "0.17403553693194135",
+      "prePrice": "0.17461281456011307",
+      "dailyRate": "0.75",
+      "volume": "2397409.90714868",
+      "marketCap": "168448822.91044658"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+version: "3.7"
+
+x-extractor-env: &extractor-env
+  # API
+  API_PORT: "8080"
+
+  START_CLAIM_EXTRACTORS: "false"
+  START_HEAD_EXTRACTOR: "true"
+  HEAD_EXTRACTOR_START_BLOCK: "64232584"
+  INSERT_EXTRACTOR_JOB: "false"
+  ICON_NODE_SERVICE_MAX_BATCH_SIZE: 1
+
+  # Logging
+  LOG_LEVEL: "DEBUG"
+  LOG_FORMAT: "console"
+
+  # Icon node service
+  ICON_NODE_SERVICE_URL: "https://ctz.solidwallet.io/api/v3" # Mainnet
+
+  # Kafka
+  KAFKA_BROKER_URL: "kafka:9092"
+  KAFKA_BLOCKS_TOPIC: "blocks"
+  KAFKA_PRODUCER_PARTITIONS: "1"
+  KAFKA_DEAD_MESSAGE_TOPIC: "icon-mainnet-blocks-v2-dead"
+
+  # Postgres
+  DB_DRIVER: "postgres"
+  DB_HOST: ${POSTGRES_HOST:-postgres}
+  DB_PORT: "5432"
+  DB_USER: ${POSTGRES_USER:-postgres}
+  DB_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+  DB_DBNAME: ${POSTGRES_DB:-postgres}
+  DB_SSL_MODE: "disable"
+  DB_TIMEZONE: "UTC"
+
+services:
+  etl:
+    image: sudoblock/icon-extractor:${ICON_ETL_TAG:-latest}
+    restart: on-failure
+    depends_on:
+      - kafka
+    environment:
+      <<: *extractor-env
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:${CP_ZOOKEEPER_TAG:-latest}
+    hostname: zookeeper
+    environment:
+      zk_id: "1"
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-server:7.2.0
+    hostname: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_BROKER_RACK: "r1"
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_SCHEMA_REGISTRY_URL: "schemaregistry:8081"
+      KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: "schemaregistry:8081"
+      KAFKA_JMX_PORT: 9991
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      KAFKA_CONFLUENT_SUPPORT_CUSTOMER_ID: anonymous
+      KAFKA_CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CONFLUENT_METRICS_ENABLE: 'false'
+      KAFKA_CONFLUENT_SUPPORT_METRICS_ENABLE: 'false'
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1

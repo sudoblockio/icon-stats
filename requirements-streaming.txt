@@ -1,0 +1,4 @@
+# Streaming
+grpcio==1.40.0
+protobuf==3.20.*
+confluent_kafka~=1.9.2

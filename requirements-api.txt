@@ -1,0 +1,7 @@
+# API
+fastapi==0.103.2
+uvicorn==0.23.2
+fastapi_health
+brotli-asgi~=1.1.0
+#starlette~=0.14.2
+#starlette

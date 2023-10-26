@@ -1,0 +1,53 @@
+# NOTE: We do not use this so if you do end up needing it you will likely need to debug it
+version: "3.7"
+
+services:
+  stats-api:
+    build:
+      context: ${STATS_CONTEXT:-.}
+      args:
+        - SERVICE_NAME=api
+    ports:
+      - "8000:8000"     # API
+      - "8180:8180"     # Health
+      - "9400:9400"     # Prometheus
+    security_opt:
+      - "seccomp:unconfined"
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ${STATS_CONTEXT:-.}/icon_stats:/app
+#    environment:
+
+  stats-streaming:
+    build:
+      context: ${STATS_CONTEXT:-.}
+      args:
+        - SERVICE_NAME=worker
+    command:
+      - worker
+      - head
+    security_opt:
+      - "seccomp:unconfined"
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ${STATS_CONTEXT:-.}/icon_stats:/app
+    environment:
+      KAFKA_BROKER_URL: "kafka:9092"
+
+  stats-cron:
+    build:
+      context: ${STATS_CONTEXT:-.}
+      args:
+        - SERVICE_NAME=worker
+    command:
+      - worker
+      - cron
+    security_opt:
+      - "seccomp:unconfined"
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ${STATS_CONTEXT:-.}/icon_stats:/app
+#    environment:
