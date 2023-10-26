@@ -1,10 +1,9 @@
 """
 This being the stats service is supposed to connect to many DBs and summarize their
 stats. As such, we need to be able to bring in the connections from multiple different
-DBs. Thus this hacky config is allowing us to inject DB creds for all those DBs.
+DBs. Thus, this hacky config is allowing us to inject DB creds for all those DBs.
 """
-# from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
 
@@ -20,49 +19,39 @@ class BaseDbConfig(BaseSettings):
 class StatsDbConfig(BaseDbConfig):
     schema_: str = Field("stats", alias="schema")
 
-    # model_config = SettingsConfigDict(
-    #     env_prefix='db_stats_',
-    #     case_sensitive=False,
-    # )
-    class Config:
+    model_config = SettingsConfigDict(
         env_prefix='db_stats_',
         case_sensitive=False,
+    )
 
 class TransformerDbConfig(BaseDbConfig):
-    # model_config = SettingsConfigDict(
-    #     env_prefix='db_transformer_',
-    #     case_sensitive=False,
-    # )
-    pass
+    model_config = SettingsConfigDict(
+        env_prefix='db_transformer_',
+        case_sensitive=False,
+    )
 
 
 class ContractsDbConfig(BaseDbConfig):
-    # model_config = SettingsConfigDict(
-    #     env_prefix='db_contracts_',
-    #     case_sensitive=False,
-    # )
-    pass
+    model_config = SettingsConfigDict(
+        env_prefix='db_contracts_',
+        case_sensitive=False,
+    )
 
 
 class GovernanceDbConfig(BaseDbConfig):
-    # model_config = SettingsConfigDict(
-    #     env_prefix='db_governance_',
-    #     case_sensitive=False,
-    # )
-    pass
+    model_config = SettingsConfigDict(
+        env_prefix='db_governance_',
+        case_sensitive=False,
+    )
 
 
 class DbConfigs(BaseSettings):
     stats: StatsDbConfig = Field(default_factory=StatsDbConfig)
-    # transformer: TransformerDbConfig = Field(default_factory=TransformerDbConfig)
-    # contracts: ContractsDbConfig = Field(default_factory=ContractsDbConfig)
-    # governance: GovernanceDbConfig = Field(default_factory=GovernanceDbConfig)
+    transformer: TransformerDbConfig = Field(default_factory=TransformerDbConfig)
+    contracts: ContractsDbConfig = Field(default_factory=ContractsDbConfig)
+    governance: GovernanceDbConfig = Field(default_factory=GovernanceDbConfig)
 
     # model_config = SettingsConfigDict(
-    #     # env_prefix='db_',
+    #     env_prefix='db_',
     #     case_sensitive=False,
     # )
-
-    class Config:
-        env_prefix='db_stats_',
-        case_sensitive=False,

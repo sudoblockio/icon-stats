@@ -73,39 +73,45 @@ class EnvLoader:
 
 
 @pytest.fixture(autouse=True)
-def config_override():
+def config_override(request):
     """
     Override the config with values in an .env.test file for tests. Needed for sensitive
      items such as API keys for tests.
     """
-    test_env_file = os.path.join(os.path.dirname(__file__), '..', '.env.test')
+    no_config_override = request.node.get_closest_marker('no_config_override')
+    if not no_config_override:
+        # Run the override logic unless the test is marked
+        test_env_file = os.path.join(os.path.dirname(__file__), '..', '.env.test')
 
-    # If .env.test does not exist, do nothing
-    if not os.path.exists(test_env_file):
-        raise Exception("File needs to be there otherwise can't run tests...")
+        # If .env.test does not exist, do nothing
+        if not os.path.exists(test_env_file):
+            raise Exception("File needs to be there otherwise can't run tests...")
 
-    # Get environment variables from .env.test
-    loader = EnvLoader.instance()
-    env_vars = loader.get_env(test_env_file)
+        # Get environment variables from .env.test
+        loader = EnvLoader.instance()
+        env_vars = loader.get_env(test_env_file)
 
-    # Store the original environment variables
-    original_values = {}
-    for key, value in env_vars:
-        original_values[key] = os.environ.get(key)
-        os.environ[key] = value
+        # Store the original environment variables
+        original_values = {}
+        for key, value in env_vars:
+            original_values[key] = os.environ.get(key)
+            os.environ[key] = value
 
-    # Create temp config which will pick up new environment variable values
-    tmp_config = Settings()
+        # Create temp config which will pick up new environment variable values
+        tmp_config = Settings()
 
-    # Override the values in the imported config
-    for k, v in tmp_config.__dict__.items():
-        setattr(config, k, v)
+        # Override the values in the imported config
+        for k, v in tmp_config.__dict__.items():
+            setattr(config, k, v)
 
-    yield
+        yield
 
-    # Cleanup: Restore original environment variable values or remove if they didn't exist
-    for key, original_value in original_values.items():
-        if original_value is not None:
-            os.environ[key] = original_value
-        else:
-            os.environ.pop(key, None)
+        # Cleanup: Restore original environment variable values if they didn't exist
+        for key, original_value in original_values.items():
+            if original_value is not None:
+                os.environ[key] = original_value
+            else:
+                os.environ.pop(key, None)
+    else:
+        # Need to yield no matter what for some reason?
+        yield

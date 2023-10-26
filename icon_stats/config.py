@@ -1,7 +1,7 @@
 import os
-# from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from pydantic import Field, BaseSettings
+from pydantic import Field
 
 from icon_stats.db_config import DbConfigs
 from icon_stats.clients.configs import CmcClientConfig
@@ -75,9 +75,9 @@ class Settings(BaseSettings):
     LOG_INCLUDE_FIELDS: list[str] = ["timestamp", "message"]
     LOG_EXCLUDE_FIELDS: list[str] = []
 
-    # model_config = SettingsConfigDict(
-    #     case_sensitive=False,
-    # )
+    model_config = SettingsConfigDict(
+        case_sensitive=False,
+    )
 
 
 
