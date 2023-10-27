@@ -63,7 +63,7 @@ def create_session_factories() -> dict[str, async_sessionmaker]:
         connection_string = create_conn_str(**db_config.__dict__)
         engine = create_async_engine(
             connection_string,
-            connect_args={"options": f"-c search_path={db_config.schema_}"},
+            # connect_args={"options": f"-c search_path={db_config.schema_}"},
             echo=True,
         )
         session_factory = async_sessionmaker(

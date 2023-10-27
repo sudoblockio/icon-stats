@@ -1,5 +1,4 @@
-# from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class BaseRestClientConfig(BaseSettings):
     endpoint: str
@@ -11,7 +10,7 @@ class CmcClientConfig(BaseRestClientConfig):
     api_key: str = ""
     endpoint: str = "https://pro-api.coinmarketcap.com"
 
-    # model_config = SettingsConfigDict(
-    #     case_sensitive=False,
-    #     env_prefix='cmc_',
-    # )
+    model_config = SettingsConfigDict(
+        case_sensitive=False,
+        env_prefix='cmc_',
+    )

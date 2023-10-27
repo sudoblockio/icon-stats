@@ -1,6 +1,8 @@
 import datetime
 
 from sqlalchemy.orm import declared_attr
+from sqlalchemy.types import DateTime
+from sqlalchemy import Column
 from sqlmodel import Field, SQLModel
 
 
@@ -20,10 +22,10 @@ class CmcListingsLatestQuote(SQLModel, table=True):
     market_cap_dominance: float
     fully_diluted_market_cap: float
     tvl: float | None
-    last_updated: datetime.datetime = Field(..., primary_key=True)
+    last_updated: datetime.datetime = Column(DateTime(timezone=True), primary_key=True)
 
     __table_args__ = {'schema': 'stats'}
 
     @declared_attr
     def __tablename__(cls) -> str:  # noqa: N805
-        return "cmc"
+        return "cmc_listings_latest_quote"

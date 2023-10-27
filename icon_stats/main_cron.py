@@ -1,5 +1,5 @@
-from typing import Callable, TypedDict
-
+import asyncio
+from typing import Callable, TypedDict, Coroutine, Any
 from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from loguru import logger
@@ -9,28 +9,31 @@ from icon_stats.config import config
 from icon_stats.db import session_factory
 from icon_stats.crons import (
     top_tokens,
+    cmc_cryptocurrency_quotes_latest,
 )
+
+AsyncCallable = Callable[..., Coroutine[Any, Any, Any]]
 
 
 class Cron(TypedDict):
-    func: Callable
+    func: AsyncCallable
     interval: int
 
 
 CRONS: list[Cron] = [
+    # {
+    #     "func": top_tokens.run_top_tokens,
+    #     "interval": 600,
+    # },
     {
-        "func": top_tokens.run_top_tokens,
-        "interval": 600,
-    },
+        "func": cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest,
+        "interval": 60,
+    }
+
 ]
 
 
-def run_cron_with_session(cron: Callable):
-    with session_factory() as session:
-        cron(session=session)
-
-
-def main():
+async def main():
     logger.info("Starting metrics server.")
     start_http_server(config.METRICS_PORT, config.METRICS_ADDRESS)
 
@@ -39,19 +42,24 @@ def main():
 
     for i in CRONS:
         # Run the jobs immediately in order
-        run_cron_with_session(i["func"])
+        await i["func"]()
 
         # Then run them in the scheduler
         sched.add_job(
-            func=run_cron_with_session,
+            func=i["func"],
             trigger="interval",
-            args=[i["func"]],
+            # args=[i["func"]],
             seconds=i["interval"],
             id=i["func"].__name__,
         )
-
+        pass
     sched.start()
+    try:
+        while True:
+            await asyncio.sleep(60)  # Sleep for a minute and check again.
+    except (KeyboardInterrupt, SystemExit):
+        pass
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
