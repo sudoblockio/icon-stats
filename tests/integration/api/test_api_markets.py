@@ -5,7 +5,7 @@ from icon_stats.config import config
 
 
 def test_api_get_markets(db: Session, client: TestClient):
-    response = client.get(f"{config.API_REST_PREFIX}/stats/markets")
+    response = client.get(f"{config.API_REST_PREFIX}/stats/exchanges/legacy")
     assert response.status_code == 200
 
 

@@ -1,16 +1,10 @@
-import asyncio
-
 import pytest
 
 from icon_stats.crons import (
     cmc_cryptocurrency_quotes_latest
 )
 
-CRONS = [
-
-]
 
 @pytest.mark.asyncio
 async def test_crons_run_cmc_cryptocurrency_quotes_latest():
-    # asyncio.run(cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest())
     await cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest()
