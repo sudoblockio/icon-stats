@@ -2,14 +2,15 @@ import asyncio
 from logging.config import fileConfig
 
 from sqlalchemy.ext.asyncio import AsyncEngine
-from sqlmodel import SQLModel, create_engine
+from sqlmodel import SQLModel, create_engine, text
 
 from alembic import context
 
 from icon_stats.db import ASYNC_CONNECTION_STRING
 
 # Imports
-from icon_stats.models.cmc_cryptocurrency_quotes_latest import CmcListingsLatestQuote  # noqa
+from icon_stats.models.cmc_cryptocurrency_quotes_latest import \
+    CmcListingsLatestQuote  # noqa
 
 config = context.config
 config.set_main_option("sqlalchemy.url", ASYNC_CONNECTION_STRING)
@@ -39,6 +40,9 @@ def do_run_migrations(connection):
         include_schemas=True,
         include_name=include_name,
     )
+
+    # Make sure the schema exists
+    connection.execute(text('CREATE SCHEMA IF NOT EXISTS stats'))
 
     with context.begin_transaction():
         context.run_migrations()
