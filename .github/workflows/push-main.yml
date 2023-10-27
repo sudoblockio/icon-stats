@@ -14,7 +14,11 @@ jobs:
 
       - name: Install deps
         run: |
-          pip3 install -r requirements_api.txt -r requirements_worker.txt -r requirements_dev.txt
+          pip3 install -r requirements-api.txt \
+          -r requirements-streaming.txt \
+          -r requirements-cron.txt \
+          -r requirements-common.txt \
+          -r requirements-dev.txt
 
       - name: Bring up stack
         run: make up-dbs && sleep 30
