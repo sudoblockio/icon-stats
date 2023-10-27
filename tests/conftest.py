@@ -7,13 +7,14 @@ from fastapi.testclient import TestClient
 from loguru import logger
 from sqlalchemy.orm import sessionmaker
 
-from icon_stats.db import engine
+from icon_stats.db import get_session
 from icon_stats.config import config, Settings
 
 
 @pytest.fixture(scope="session")
 def db():
-    SessionMade = sessionmaker(bind=engine)
+    # SessionMade = sessionmaker(bind=engine)
+    SessionMade = get_session('stats')
     session = SessionMade()
 
     yield session

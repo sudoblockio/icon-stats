@@ -5,7 +5,7 @@ from sqlmodel import select
 from pydantic import BaseModel
 from datetime import datetime
 
-from icon_stats.db import get_session
+from icon_stats.db import get_session_api
 from icon_stats.models.cmc_cryptocurrency_quotes_latest import CmcListingsLatestQuote
 
 router = APIRouter()
@@ -31,7 +31,7 @@ class ExchangesLegacyResponse(BaseModel):
 
 @router.get("/stats/exchanges/legacy", response_model=ExchangesLegacyResponse)
 async def get_exchange_prices(
-        session: AsyncSession = Depends(get_session),
+        session: AsyncSession = Depends(get_session_api),
 ) -> ExchangesLegacyResponse:
     """Return list of delegations."""
     query = (

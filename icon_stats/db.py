@@ -1,8 +1,5 @@
 from contextlib import asynccontextmanager
-
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import sessionmaker
-
 from sqlmodel import SQLModel
 from typing import TypeVar
 
@@ -30,6 +27,7 @@ ASYNC_CONNECTION_STRING = create_conn_str(
     port="5432",
 )
 
+
 def create_db_connection_strings() -> dict[str, str]:
     connection_strings = {}
 
@@ -38,23 +36,6 @@ def create_db_connection_strings() -> dict[str, str]:
 
     return connection_strings
 
-
-# engines = {}
-#
-# engines = {
-#     db: create_async_engine(
-#         url,
-#         connect_args={"options": f"-c search_path={config.}"},
-#         echo=True,
-#     )
-#     for db, url in create_db_connection_strings().items()
-# }
-#
-# # A dict to hold sessions for each of the DBs being used
-# session_factories = {
-#     db: async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
-#     for db, engine in engines.items()
-# }
 
 def create_session_factories() -> dict[str, async_sessionmaker]:
     output = {}
@@ -65,6 +46,7 @@ def create_session_factories() -> dict[str, async_sessionmaker]:
             connection_string,
             # connect_args={"options": f"-c search_path={db_config.schema_}"},
             echo=True,
+            future=True,
         )
         session_factory = async_sessionmaker(
             bind=engine,
@@ -76,10 +58,20 @@ def create_session_factories() -> dict[str, async_sessionmaker]:
     return output
 
 
+async def get_session_api() -> AsyncSession:
+    """
+    Fastapi expects a coroutine to be returned from a dependency function. `get_session`
+     returns a contextmanager, so we use this instead for the api.
+    """
+    async with session_factories['stats']() as session:
+        yield session
+
+
 session_factories = create_session_factories()
 
+
 @asynccontextmanager
-async def get_session(db_name: str):
+async def get_session(db_name: str = 'stats'):
     if db_name not in session_factories:
         raise ValueError(
             f"No session factory registered for database key: {db_name}")
