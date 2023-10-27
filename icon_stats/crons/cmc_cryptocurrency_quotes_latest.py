@@ -5,7 +5,7 @@ from icon_stats.utils.times import convert_str_date
 from icon_stats.metrics import prom_metrics
 from icon_stats.models.cmc_cryptocurrency_quotes_latest import CmcListingsLatestQuote
 from icon_stats.clients.cmc import new_cmc_client
-from icon_stats.db_async import get_session, upsert_model
+from icon_stats.db import get_session, upsert_model
 
 
 async def run_cmc_cryptocurrency_quotes_latest():

@@ -6,7 +6,7 @@ from sqlmodel import SQLModel, create_engine
 
 from alembic import context
 
-from icon_stats.db_async import ASYNC_CONNECTION_STRING
+from icon_stats.db import ASYNC_CONNECTION_STRING
 
 # Imports
 from icon_stats.models.cmc_cryptocurrency_quotes_latest import CmcListingsLatestQuote  # noqa

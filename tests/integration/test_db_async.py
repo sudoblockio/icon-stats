@@ -2,7 +2,7 @@ import pytest
 from sqlmodel import SQLModel
 from sqlalchemy.orm.exc import UnmappedInstanceError
 
-from icon_stats.db_async import upsert_model
+from icon_stats.db import upsert_model
 
 
 @pytest.mark.asyncio
