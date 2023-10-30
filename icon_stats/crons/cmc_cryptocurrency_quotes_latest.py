@@ -1,5 +1,6 @@
 from icon_stats.log import logger
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 
 from icon_stats.utils.times import convert_str_date
 from icon_stats.metrics import prom_metrics
@@ -26,8 +27,10 @@ async def run_cmc_cryptocurrency_quotes_latest():
     quote['last_updated'] = convert_str_date(quote['last_updated'])
     exchanges_legacy = CmcListingsLatestQuote(base='ICX', quote='USD', **quote)
 
-
-    await upsert_model(db_name='stats', model=exchanges_legacy)
+    try:
+        await upsert_model(db_name='stats', model=exchanges_legacy)
+    except IntegrityError:
+        logger.info("Duplicate PK - skipping upsert")
 
     prom_metrics.cron_ran.inc()
-    logger.info("Ending top tokens cron")
+    logger.info("Ending cmc crypto quotes latest cron")
