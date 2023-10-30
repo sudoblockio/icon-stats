@@ -39,7 +39,7 @@ def upgrade() -> None:
     sa.Column('fully_diluted_market_cap', sa.Float(), nullable=False),
     sa.Column('tvl', sa.Float(), nullable=True),
     sa.Column('last_updated', sa.DateTime(), nullable=False),
-    sa.PrimaryKeyConstraint('base', 'quote'),
+    sa.PrimaryKeyConstraint('base', 'quote', 'last_updated'),
     schema='stats'
     )
     # ### end Alembic commands ###
