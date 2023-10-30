@@ -10,6 +10,9 @@ ENV PYTHONPATH="/opt:${PYTHONPATH}"
 
 WORKDIR /opt
 
+# TMP while sqlmodel is being upgraded to pyd2 / sqla2
+RUN apt-get update && apt-get install -y git && apt-get clean
+
 RUN pip install --upgrade pip
 COPY ./requirements-$SERVICE_NAME.txt .
 COPY ./requirements-common.txt .
