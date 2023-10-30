@@ -1,12 +1,10 @@
 import asyncio
 from typing import Callable, TypedDict, Coroutine, Any
-from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from loguru import logger
 from prometheus_client import start_http_server
 
 from icon_stats.config import config
-from icon_stats.db import session_factory
 from icon_stats.crons import (
     top_tokens,
     cmc_cryptocurrency_quotes_latest,
@@ -27,7 +25,7 @@ CRONS: list[Cron] = [
     # },
     {
         "func": cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest,
-        "interval": 60,
+        "interval": 120,
     }
 
 ]
@@ -48,7 +46,6 @@ async def main():
         sched.add_job(
             func=i["func"],
             trigger="interval",
-            # args=[i["func"]],
             seconds=i["interval"],
             id=i["func"].__name__,
         )
