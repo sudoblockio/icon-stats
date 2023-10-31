@@ -11,7 +11,6 @@ from icon_stats.api.v1.router import api_router
 from icon_stats.config import config
 from icon_stats.log import logger
 
-
 description = """
 Backend that maintains indexes of all pools, tokens, and associated data such as 
  prices, volumes, and fees for the stats page and coin-market-cap data feeds. 
@@ -50,11 +49,13 @@ app.add_middleware(
 async def setup():
     logger.info("Starting metrics server.")
     metrics_pool = ThreadPool(1)
-    metrics_pool.apply_async(start_http_server,
-                             (config.METRICS_PORT, config.METRICS_ADDRESS))
+    metrics_pool.apply_async(
+        start_http_server,
+        (config.METRICS_PORT, config.METRICS_ADDRESS),
+    )
 
-    logger.info("Starting cache loop...")
-    pool = ThreadPool(1)
+    # logger.info("Starting cache loop...")
+    # pool = ThreadPool(1)
     # pool.apply_async(cache_cron)
 
 
