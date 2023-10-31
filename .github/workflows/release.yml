@@ -142,16 +142,31 @@ jobs:
           updateFile: true
           commitChange: false
 
-      - name: Update worker ${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }} deployment values file
+      - name: Update cron ${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }} deployment values file
         uses: fjogeleit/yaml-update-action@master
         with:
           workDir: charts
           repository: sudoblockio/icon-charts
           valueFile: 'deployments/${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }}/stats/tags.yaml'
-          propertyPath: 'worker.image.tag'
+          propertyPath: 'cron.image.tag'
           value: ${{needs.docker.outputs.tag}}
           branch: main
           createPR: 'false'
           updateFile: true
           message: "stats ${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }} deployment image version to ${{needs.docker.outputs.tag}}"
           token: '${{ secrets.ICON_CHARTS_PAT }}'
+
+      - name: Update streaming ${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }} deployment values file
+        uses: fjogeleit/yaml-update-action@master
+        with:
+          workDir: charts
+          repository: sudoblockio/icon-charts
+          valueFile: 'deployments/${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }}/stats/tags.yaml'
+          propertyPath: 'streaming.image.tag'
+          value: ${{needs.docker.outputs.tag}}
+          branch: main
+          createPR: 'false'
+          updateFile: true
+          message: "stats ${{ matrix.cluster }}/${{ matrix.network_name }}-${{ matrix.network_version }} deployment image version to ${{needs.docker.outputs.tag}}"
+          token: '${{ secrets.ICON_CHARTS_PAT }}'
+
