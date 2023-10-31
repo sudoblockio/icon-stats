@@ -4,8 +4,13 @@
 
 [![loopchain](https://img.shields.io/badge/ICON-API-blue?logoColor=white&logo=icon&labelColor=31B8BB)](https://shields.io) [![GitHub Release](https://img.shields.io/github/release/sudoblockio/icon-stats.svg?style=flat)]()  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[//]: # (![](https://github.com/sudoblockio/icon-stats/workflows/push-main/badge.svg?branch=main) [![codecov](https://codecov.io/gh/sudoblockio/icon-stats/branch/main/graph/badge.svg)](https://codecov.io/gh/sudoblockio/icon-stats))
-[//]: # (![Uptime]&#40;https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsudoblockio%2Ficon-status-page%2Fmaster%2Fapi%2Fdev-stats-service%2Fuptime.json&#41;)
+<!---
+![](https://github.com/sudoblockio/icon-stats/workflows/push-main/badge.svg?branch=main) [![codecov](https://codecov.io/gh/sudoblockio/icon-stats/branch/main/graph/badge.svg)](https://codecov.io/gh/sudoblockio/icon-stats)
+
+![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsudoblockio%2Ficon-status-page%2Fmaster%2Fapi%2Fdev-stats-service%2Fuptime.json)
+--->
+
+
 
 [Live API Docs](https://tracker.icon.community/api/v1/stats/docs)
 
