@@ -18,14 +18,7 @@ def create_conn_str(
     return f"{prefix}://{user}:{password}@{server}:{port}/{database}"
 
 
-# ASYNC_SQLALCHEMY_DATABASE_URL = create_conn_str(**config.db.stats.__dict__)
-ASYNC_CONNECTION_STRING = create_conn_str(
-    user="postgres",
-    password="changeme",
-    server="localhost",
-    database="postgres",
-    port="5432",
-)
+ASYNC_CONNECTION_STRING = create_conn_str(**config.db.stats.__dict__)
 
 
 def create_db_connection_strings() -> dict[str, str]:
@@ -44,7 +37,6 @@ def create_session_factories() -> dict[str, async_sessionmaker]:
         connection_string = create_conn_str(**db_config.__dict__)
         engine = create_async_engine(
             connection_string,
-            # connect_args={"options": f"-c search_path={db_config.schema_}"},
             echo=True,
             future=True,
         )
