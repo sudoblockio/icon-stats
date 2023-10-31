@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/sudoblockio/icon-stats/compare/v0.1.2...v0.1.3) (2023-10-31)
+
+
+### Bug Fixes
+
+* ci build - snub streaming ([202eda1](https://github.com/sudoblockio/icon-stats/commit/202eda199ddf648489a1a655355bbc40806777c4))
+
 ## [0.1.2](https://github.com/sudoblockio/icon-stats/compare/v0.1.1...v0.1.2) (2023-10-31)
 
 
