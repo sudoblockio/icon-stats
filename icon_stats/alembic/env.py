@@ -7,6 +7,7 @@ from sqlmodel import SQLModel, create_engine, text
 from alembic import context
 
 from icon_stats.db import ASYNC_CONNECTION_STRING
+from icon_stats.config import config as icon_config
 
 # Imports
 from icon_stats.models.cmc_cryptocurrency_quotes_latest import \
@@ -42,7 +43,10 @@ def do_run_migrations(connection):
     )
 
     # Make sure the schema exists
-    connection.execute(text('CREATE SCHEMA IF NOT EXISTS stats'))
+    if icon_config.db.stats.server == 'localhost':
+        # In production environment we need escalated privileges to create a schema
+        # so we do it manually. Local it is assumed we have these privileges
+        connection.execute(text('CREATE SCHEMA IF NOT EXISTS stats'))
 
     with context.begin_transaction():
         context.run_migrations()
