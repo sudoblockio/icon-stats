@@ -9,7 +9,7 @@ from icon_stats.clients.configs import CmcClientConfig
 class Settings(BaseSettings):
     # General
     NAME: str = "stats"
-    VERSION: str = "v0.1.0"  # x-release-please-version
+    VERSION: str = "v0.1.1"  # x-release-please-version
     NETWORK_NAME: str = "mainnet"
 
     # Exchanges
