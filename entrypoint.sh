@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -e
+
 if [ "$1" = "streaming" ]; then
   echo "Migrating backend..."
   cd icon_stats
