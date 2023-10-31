@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/sudoblockio/icon-stats/compare/v0.1.1...v0.1.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* ci build issue in release ([6d7ef62](https://github.com/sudoblockio/icon-stats/commit/6d7ef623e2d298379304c8f7053d9ae480118532))
+
 ## [0.1.1](https://github.com/sudoblockio/icon-stats/compare/v0.1.0...v0.1.1) (2023-10-31)
 
 
