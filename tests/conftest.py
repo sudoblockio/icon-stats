@@ -5,7 +5,6 @@ from typing import Generator
 from _pytest.logging import caplog as _caplog
 from fastapi.testclient import TestClient
 from loguru import logger
-from sqlalchemy.orm import sessionmaker
 
 from icon_stats.db import get_session
 from icon_stats.config import config, Settings
