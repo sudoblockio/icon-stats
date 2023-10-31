@@ -2,8 +2,9 @@
   <h2 align="center">ICON Stats Service</h2>
 </p>
 
-[![loopchain](https://img.shields.io/badge/ICON-API-blue?logoColor=white&logo=icon&labelColor=31B8BB)](https://shields.io) [![GitHub Release](https://img.shields.io/github/release/sudoblockio/icon-stats.svg?style=flat)]() ![](https://github.com/sudoblockio/icon-stats/workflows/push-main/badge.svg?branch=main) [![codecov](https://codecov.io/gh/sudoblockio/icon-stats/branch/main/graph/badge.svg)](https://codecov.io/gh/sudoblockio/icon-stats) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![loopchain](https://img.shields.io/badge/ICON-API-blue?logoColor=white&logo=icon&labelColor=31B8BB)](https://shields.io) [![GitHub Release](https://img.shields.io/github/release/sudoblockio/icon-stats.svg?style=flat)]()  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+[//]: # (![](https://github.com/sudoblockio/icon-stats/workflows/push-main/badge.svg?branch=main) [![codecov](https://codecov.io/gh/sudoblockio/icon-stats/branch/main/graph/badge.svg)](https://codecov.io/gh/sudoblockio/icon-stats))
 [//]: # (![Uptime]&#40;https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsudoblockio%2Ficon-status-page%2Fmaster%2Fapi%2Fdev-stats-service%2Fuptime.json&#41;)
 
 [Live API Docs](https://tracker.icon.community/api/v1/stats/docs)
@@ -15,6 +16,10 @@ Off chain indexer for the ICON Blockchain serving the **stats** for the [icon-ex
 Service can be run in the following ways:
 
 1. Independently from this repo with docker compose:
+
+> Note: This is untested and likely needs some work. Production runs on k8s so this is 
+> not a priority at the moment. Should work with a little bit of love on the compose. 
+
 ```bash
 docker-compose -f docker-compose.db.yml -f docker-compose.yml up -d
 # Or alternatively
@@ -22,6 +27,8 @@ make up
 ```
 
 2. With the whole stack from the main [icon-explorer](https://github.com/sudoblockio/icon-explorer) repo.
+
+> Again, untested. 
 
 Run `make help` for more options.
 
