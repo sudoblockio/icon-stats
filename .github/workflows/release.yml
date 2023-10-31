@@ -99,15 +99,15 @@ jobs:
             SERVICE_NAME=cron
           tags: sudoblock/icon-stats-cron:latest, sudoblock/icon-stats-cron:${{ steps.source.outputs.TAG }}
 
-      - name: Build and push streaming
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          build-args: |
-            SERVICE_NAME=streaming
-          tags: sudoblock/icon-stats-streaming:latest, sudoblock/icon-stats-streaming:${{ steps.source.outputs.TAG }}
+#      - name: Build and push streaming
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          file: ./Dockerfile
+#          push: true
+#          build-args: |
+#            SERVICE_NAME=streaming
+#          tags: sudoblock/icon-stats-streaming:latest, sudoblock/icon-stats-streaming:${{ steps.source.outputs.TAG }}
 
   push_refs:
     runs-on: ubuntu-latest
