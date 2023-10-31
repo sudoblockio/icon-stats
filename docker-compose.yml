@@ -23,7 +23,7 @@ services:
     build:
       context: ${STATS_CONTEXT:-.}
       args:
-        - SERVICE_NAME=worker
+        - SERVICE_NAME=streaming
     command:
       - worker
       - head
@@ -40,9 +40,8 @@ services:
     build:
       context: ${STATS_CONTEXT:-.}
       args:
-        - SERVICE_NAME=worker
+        - SERVICE_NAME=cron
     command:
-      - worker
       - cron
     security_opt:
       - "seccomp:unconfined"
