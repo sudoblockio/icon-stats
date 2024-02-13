@@ -19,6 +19,7 @@ COPY ./requirements-common.txt .
 RUN pip install -r ./requirements-$SERVICE_NAME.txt -r ./requirements-common.txt
 
 COPY icon_stats ./icon_stats
+COPY data ./data
 
 COPY entrypoint.sh ./
 RUN chmod +x entrypoint.sh
