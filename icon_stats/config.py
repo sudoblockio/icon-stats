@@ -1,10 +1,12 @@
 import os
+
+from dotenv import dotenv_values
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from pydantic import Field
-
-from icon_stats.db_config import DbConfigs
 from icon_stats.clients.configs import CmcClientConfig
+from icon_stats.db_config import DbConfigs
+
 
 class Settings(BaseSettings):
     # General
@@ -23,7 +25,7 @@ class Settings(BaseSettings):
     # API
     API_PORT: int = 8000
     API_REST_PREFIX: str = "/api/v1"
-    API_DOCS_PREFIX: str = "/api/v1/stats/docs"
+    API_DOCS_PREFIX: str = "/api/v1/statistics/docs"
     API_MAX_PAGE_SIZE: int = 100
 
     CORS_ALLOW_ORIGINS: str = "*"
@@ -80,8 +82,29 @@ class Settings(BaseSettings):
     )
 
 
+def load_env_to_variables(env_file_path):
+    """
+    Load environment variables from a .env file and export them to the actual environment variables.
 
+    Args:
+    - env_file_path (str): Path to the .env file
+
+    Returns:
+    - None
+    """
+    # Load environment variables from the .env file
+    env_vars = dotenv_values(env_file_path)
+
+    # Export variables to the actual environment
+    for key, value in env_vars.items():
+        os.environ[key] = value
+
+
+# Ignored by default
+test_env = os.path.join(os.path.dirname(__file__), "..", ".env.test")
 if os.environ.get("ENV_FILE", False):
-    config = Settings(_env_file=os.environ.get("ENV_FILE"))
-else:
-    config = Settings()
+    load_env_to_variables(os.environ.get("ENV_FILE"))
+elif os.path.isfile(test_env):
+    load_env_to_variables(test_env)
+
+config = Settings()

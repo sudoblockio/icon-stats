@@ -3,4 +3,5 @@ pytest-mock
 pytest-cov
 pytest-asyncio
 pytest-order
+testcontainers
 httpx

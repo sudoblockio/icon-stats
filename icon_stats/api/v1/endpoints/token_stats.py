@@ -1,42 +1,72 @@
 from http import HTTPStatus
-from fastapi import APIRouter, Depends, Query, Response
+
+from fastapi import APIRouter, Depends, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from sqlmodel import func, select
+from sqlmodel import select
 
-from icon_stats.db import get_session
-from icon_stats.models.token_stats import TokenStats
+from icon_stats.db import get_session_api
+from icon_stats.models.applications import Application
+from icon_stats.models.contracts import Contract
+from icon_stats.models.tokens import Token
 
 router = APIRouter()
 
 
-@router.get("/stats/tokens")
-async def get_token_stats(
+@router.get("/applications")
+async def get_application_stats(
     response: Response,
-    address: str,
-    skip: int = Query(0),
-    limit: int = Query(100, gt=0, lt=101),
-    session: AsyncSession = Depends(get_session),
-) -> list[TokenStats]:
-    """Return list of delegations."""
-    query = (
-        select(TokenStats)
-        .offset(skip)
-        .limit(limit)
-        .order_by(TokenStats.value.desc())
-    )
+    session: AsyncSession = Depends(get_session_api),
+) -> list[Application]:
+    """Return list of application stats."""
+    query = select(Application)
 
     result = await session.execute(query)
-    delegations = result.scalars().all()
+    output = result.scalars().all()
 
-    # Check if exists
-    if len(delegations) == 0:
-        return Response(status_code=HTTPStatus.NO_CONTENT.value)
+    if len(output) == 0:
+        response.status_code = HTTPStatus.NO_CONTENT.value
+        return []
 
-    # Return the count in header
-    query_count = select([func.count(TokenStats.address)]).where(TokenStats.address == address)
-    result_count = await session.execute(query_count)
-    total_count = str(result_count.scalars().all()[0])
-    response.headers["x-total-count"] = total_count
+    response.headers["x-total-count"] = str(len(output))
+    return output
 
-    return delegations
+
+@router.get("/contracts")
+async def get_contract_stats(
+    response: Response,
+    session: AsyncSession = Depends(get_session_api),
+) -> list[Contract]:
+    """Return list of contract stats."""
+    query = select(Contract)
+
+    result = await session.execute(query)
+    output = result.scalars().all()
+
+    if len(output) == 0:
+        response.status_code = HTTPStatus.NO_CONTENT.value
+        return []
+
+    response.headers["x-total-count"] = str(len(output))
+
+    return output
+
+
+@router.get("/tokens")
+async def get_token_stats(
+    response: Response,
+    session: AsyncSession = Depends(get_session_api),
+) -> list[Token]:
+    """Return list of token stats."""
+    query = select(Token)
+
+    result = await session.execute(query)
+    output = result.scalars().all()
+
+    if len(output) == 0:
+        response.status_code = HTTPStatus.NO_CONTENT.value
+        return []
+
+    response.headers["x-total-count"] = str(len(output))
+
+    return output

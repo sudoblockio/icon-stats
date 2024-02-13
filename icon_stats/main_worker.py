@@ -2,7 +2,7 @@ from loguru import logger
 from prometheus_client import start_http_server
 
 from icon_stats.config import config
-from icon_stats.workers.transactions import (
+from icon_stats.streaming.transformer import (
     transactions_worker_head,
     transactions_worker_tail,
 )

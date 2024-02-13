@@ -1,17 +1,19 @@
 import asyncio
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel import SQLModel, create_engine, text
 
-from alembic import context
-
-from icon_stats.db import ASYNC_CONNECTION_STRING
 from icon_stats.config import config as icon_config
+from icon_stats.db import ASYNC_CONNECTION_STRING
 
 # Imports
-from icon_stats.models.cmc_cryptocurrency_quotes_latest import \
-    CmcListingsLatestQuote  # noqa
+# from icon_stats.models.cmc_cryptocurrency_quotes_latest import \
+#     CmcListingsLatestQuote  # noqa
+from icon_stats.models.applications import Application
+from icon_stats.models.contracts import Contract
+from icon_stats.models.tokens import Token
 
 config = context.config
 config.set_main_option("sqlalchemy.url", ASYNC_CONNECTION_STRING)
@@ -36,17 +38,17 @@ def do_run_migrations(connection):
     context.configure(
         connection=connection,
         target_metadata=target_metadata,
-        version_table='alembic_version',
+        version_table="alembic_version",
         version_table_schema="stats",
         include_schemas=True,
         include_name=include_name,
     )
 
     # Make sure the schema exists
-    if icon_config.db.stats.server == 'localhost':
+    if icon_config.db.stats.server in ["localhost", "127.0.0.1"]:
         # In production environment we need escalated privileges to create a schema
         # so we do it manually. Local it is assumed we have these privileges
-        connection.execute(text('CREATE SCHEMA IF NOT EXISTS stats'))
+        connection.execute(text("CREATE SCHEMA IF NOT EXISTS stats"))
 
     with context.begin_transaction():
         context.run_migrations()
@@ -62,7 +64,8 @@ async def run_migrations_online():
             ASYNC_CONNECTION_STRING,
             echo=True,
             future=True,
-        ))
+        )
+    )
 
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)

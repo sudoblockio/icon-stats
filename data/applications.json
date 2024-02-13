@@ -1,0 +1,430 @@
+{
+    "name": "ICONDashboard app & token list",
+    "version": "1.0",
+    "apps": [
+        {
+            "id": "balanced",
+            "name": "Balanced",
+            "description": "DEX, Loans",
+            "url": "https://balanced.network/",
+            "logo": "",
+            "contracts": [
+                "cx66d4d90f5f113eba575bf793570135f9b10cece1",
+                "cx43e2eec79eb76293c298f2b17aec06097be606e0",
+                "cx203d9cd2a669be67177e997b8948ce2c35caffae",
+                "cxf58b9a1898998a31be7f1d99276204a3333ac9b3",
+                "cx835b300dcfe01f0bdb794e134a0c5628384f4367",
+                "cx10d59e8103ab44635190bd4139dbfd682fa2d07e",
+                "cxa0af3165c08318e988cb30993b3048335b94af6c",
+                "cx40d59439571299bca40362db2a7d8cae5b0b30b0",
+                "cx44250a12074799e26fdeee75648ae47e2cc84219",
+                "cxe647e0af68a4661566f5e9861ad4ac854de808a2",
+                "cx21e94c08c03daee80c25d8ee3ea22a20786ec231",
+                "cx88fd7df7ddff82f7cc735c871dc519838cb235bb",
+                "cxf61cd5a45dc9f91c15aa65831a30a90d59a09619",
+                "cxcfe9d1f83fa871e903008471cca786662437e58d",
+                "cxe3905591929d17fc8496ae28ee3b9c144579228e",
+                "cxa09dbb60dcb62fffbd232b6eae132d730a2aafa6",
+                "cx8dc674ce709c518bf1a6058a2722a59f94b6fb7f",
+                "cx133c6015bb29f692b12e71c1792fddf8f7014652",
+                "cxe0252e6c1fe4040412811d83d13979e335287e45",
+                "cx5faae53c4dbd1fbe4a2eb4aab6565030f10da5c6",
+                "cx28497aef34ec44ad2be9249daddfbe34b54f309a",
+                "cxabea09a8c5f3efa54d0a0370b14715e6f2270591",
+                "cx227f747ab644a1f453a0708a55fe6155b9e0abbb",
+                "cx2609b924e33ef00b648a409245c7ea394c467824"
+            ]
+        },
+        {
+            "id": "xcall",
+            "name": "xCall",
+            "description": "Cross-chain messaging service",
+            "url": "https://icon.community/xcall/",
+            "logo": "",
+            "contracts": [
+                "cxa07f426062a1384bdd762afa6a87d123fbc81c75",
+                "cx622bbab73698f37dbef53955fd3decffeb0b0c16"
+            ]
+        },
+        {
+            "id": "omm",
+            "name": "Omm",
+            "description": "Liquid Staking, governance",
+            "url": "https://omm.finance/",
+            "logo": "",
+            "contracts": [
+                "cxeaff5a10cb72bf85965b8b4af3e708ab772b7921",
+                "cx841f29ec6ce98b527d49a275e87d427627f1afe5",
+                "cx4f3c2edf730f203b1ef1257d645415652ae8b4fb",
+                "cx8190de91c8831f382dcabdbc87968448380c4838",
+                "cx4f2d730ad969f5c839229de42184c5e47aefef6f",
+                "cxab8087bd0641adb71563ce1734068f760644d417",
+                "cx1a29259a59f463a67bb2ef84398b30ca56b5830a"
+            ]
+        },
+        {
+            "id": "craft",
+            "name": "Craft",
+            "description": "NFT marketplace",
+            "url": "https://craft.network/",
+            "logo": "",
+            "contracts": [
+                "cx2e6d0fc0eca04965d06038c8406093337f085fcf",
+                "cxf3ba4534fcf1e76f4561170a81f56b40f89324b0",
+                "cx9c4698411c6d9a780f605685153431dcda04609f",
+                "cx7ecb16e4c143b95e01d05933c17cb986cfe618e6",
+                "cx2d86ce51600803e187ce769129d1f6442bcefb5b",
+                "cx82c8c091b41413423579445032281bca5ac14fc0"
+            ]
+        },
+        {
+            "id": "btp",
+            "name": "BTP",
+            "description": "Blockchain Transmission Protocol",
+            "url": "https://icon.community/learn/btp/",
+            "logo": "",
+            "contracts": [
+                "cx23a91ee3dd290486a9113a6a42429825d813de53",
+                "cx67e67f92e231627393ee0d184620162660c06a1c",
+                "cxa19ea5c583e96b1ebd684ef8601e2b20f0a0898b",
+                "cxbdcc8e15406998d99c4927fecfde99f7c1404358",
+                "cxd54393c08045fc12fd5870f1391b59dce7fd8b3b",
+                "cxdbdf0d873cf5a3a36970713e1e7ce8c8b04677b8"
+            ]
+        },
+        {
+            "id": "blobble",
+            "name": "Blobble",
+            "description": "Blobble",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxccf103a44f57bd17bc5da486c51a6405b99d29b8",
+                "cxf14dea1cff7ceb29a46e6d04533a08f84441e41d"
+            ]
+        },
+        {
+            "id": "cps",
+            "name": "CPS",
+            "description": "CPS",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxd965531d1cce5daad1d1d3ee1efb39ce68f442fc"
+            ]
+        },
+        {
+            "id": "gangstaverse",
+            "name": "GangstaVerse",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxc499adbab72acece15f369916298324c37079934",
+                "cx1125cae5b048ba57c9331e47e0220a3b91287ffb",
+                "cx4a2d109dac5032b439fdeecd81652ce0f9604032",
+                "cx2dc662031f3d62bcdba4f63e9bf827767c847565",
+                "cx2dc662031f3d62bcdba4f63e9bf827767c847565",
+                "cx384018e03aa8b739472c7a0645b70df97550e2c2",
+                "cx4983db3b01bfa6a801504c0987873227480814cb",
+                "cx4b8b991c61003d3e56193cc802076e3ed6e7743f",
+                "cx53f8ccd5426534f82cf10cb742de033e51da72fc",
+                "cx5a0af85407c69945eb318d4ac18e9e842184163c",
+                "cx5f1cc357f2304fb2646e20211adbe137ab5852dd",
+                "cx6139a27c15f1653471ffba0b4b88dc15de7e3267",
+                "cx6c689bd0db7364ce73dd327acd09d43c114d670c",
+                "cx6f1e52e96cac213fd3689ada4fb2da637cc1822c",
+                "cx7baf94bd53b505353285ee4c4c050f9703581703",
+                "cxbd4192d265f1a5f6fad3f0c7721f2de60fb88841",
+                "cxcf442ae3cb1cfe4972f35a9f478f0268e289c165",
+                "cxd17316e24ee40f2ef8ed6f3a497311db1b35206d",
+                "cxd93257059292ac208d736b2bcee24b7aedec4da7",
+                "cx0ff8d1c6b8ce2085d1eb4e8d976cfef2622a1489",
+                "cxb9b1123a92980ce1282cb28c90701407d73dc5a3",
+                "cxc30fe5ff90c870e7f31f744cce1a79453087f58a",
+                "cxd77007090899311f1afbcae86b49cfe817fc6810"
+            ]
+        },
+        {
+            "id": "framd",
+            "name": "FRAMD",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx2aa9b28a657e3121b75d3d4fe65e569398645d56",
+                "cx30f18d26f45d990112a4cd4825c0b79af73aac7c"
+            ]
+        },
+        {
+            "id": "hana",
+            "name": "Hana Wallet",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxc7d2b2ea91af80d4535dbbee0318399d3aedb6b1"
+            ]
+        },
+        {
+            "id": "inanis",
+            "name": "Inanis Invictus",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx32d5b6c3eff488b058feff88acec824abe7ed8ca",
+                "cxd0d93ab058d3706d3365ae455497f3cdd5bfae51",
+                "cxe971c0a92c58db502e4a224efc6ba311eb1c173d",
+                "cxedf34c9c3861d29c3132e59bf2a9a9810c248eae"
+            ]
+        },
+        {
+            "id": "karma",
+            "name": "Karma finance",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx018d9024fd6c989f56e7f9270c0540d08ecabcc9",
+                "cx2a3dbe2fe8616a3fa1805e0c942e50a4b2703558",
+                "cx5f0b9233553146e83e13a9d6a328c413626a25a1",
+                "cx77fa78e7252990fb799165825958b2a73b33e60c",
+                "cx79b33aae8a8026afdcad3f96a535a3b7504ef723",
+                "cx817992d73ba24cb22f7a1d8702dc033322b8bfe9",
+                "cxb1bbc36525dfbcb581ef693acbed63d0b23a9fc9",
+                "cxc41013a6dcb1c47d2ac25e91d815d1f2d4d7b386",
+                "cxd13a2686804910374e3bac15cfc7277a0eba0840",
+                "cxe29af3741195295cec69f90b3a0f9f4079e18524",
+                "cxfec90d9bbf9cb621a237051e4c5d881c4cbbd724"
+            ]
+        },
+        {
+            "id": "myid",
+            "name": "MyID",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx694e8c9f1a05c8c3719f30d46b97697960e4289e",
+                "cx9e3cadcc1a4be3323ea23371b84575abb32703ae",
+                "cxba62bb61baf8dd8b6a04633fe33806547785a00c"
+            ]
+        },
+        {
+            "id": "omni",
+            "name": "Omni Name Service",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx3dd4adebb73eebcb8a7029c1a07b5a64be926ddf"
+            ]
+        },
+        {
+            "id": "optimus",
+            "name": "Optimus Finance",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx05127d5e78512188a4d9553e990c9ebafb7ba73b",
+                "cx145a0175e2eb55d73b310a37ce2bd489856d992d",
+                "cx18403e24f5f5f7cf7a7bae8885d3e1d27ce5fd10",
+                "cx221cad4d4a88f03f24457c82209d66160275ed4b",
+                "cx27eae7726c18d6cdfffa071e01d1f3a0950d7c3f",
+                "cx3aa695bc3faf72e4cf10019e8dd2eb61f597c86b",
+                "cx4c18433c607bd8c6a0953e9627f5a0892ac40363",
+                "cx55e13d2ff2535c8bac82a4f5d01769a4a8a3d799",
+                "cx58fb6feb226e4c073be27b6a6c8f30ebe06ac6fd",
+                "cx6690c7f501868838a1c2135ebb2d5e0933cf8b41",
+                "cx7b1843b7ef5368a080ccf59c0a9d1bdec474f9f6",
+                "cx83bcab7a2f718b9cb899043227affb5797eb2b75",
+                "cx84a42754868aa02884c766fa3f9b3d1fa6d0e12c",
+                "cx8568c0371e7bfeb9502295f6724f739e1ee66158",
+                "cx9f734408d7434604bb9984fa5898a792670ea945",
+                "cxa0af3165c08318e988cb30993b3048335b94af6c",
+                "cxaa99a164586883eed0322d62a31946dfa9491fa6",
+                "cxabb70eb88a57be527ad8bd4d31e938278a0ffd96",
+                "cxacf4fca7dd5e3961c6d6d911d6401a7f3c465a11",
+                "cxb3653880b51982d5a5033a7d6d72c550be613261",
+                "cxc82d77779efd9c03b205ef8c896cbb2ba934c610",
+                "cxcb2468dea701356641c6402c1c6dce556090ffa5",
+                "cxcb455f26a2c01c686fa7f30e1e3661642dd53c0d",
+                "cxe3b2755db3276dda820c6145ca791e07e8317d3c",
+                "cxee1fa51a14783577bc4b900c13579b9bcb0b55f5",
+                "cxfd6f9f61aabc0b8e72f272542711d740fe468819"
+            ]
+        },
+        {
+            "id": "pengwyn",
+            "name": "PENGWYN",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxd99278b53ea6c02f8ca373c61b6e5b7311d54990"
+            ]
+        },
+        {
+            "id": "broof",
+            "name": "Broof",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx69bcdf1753472c1444188ec3f5188657e30c8322"
+            ]
+        },
+        {
+            "id": "governance",
+            "name": "Governance",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx0000000000000000000000000000000000000000"
+            ]
+        },
+        {
+            "id": "iam",
+            "name": "iAM",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx14002628a4599380f391f708843044bc93dce27d",
+                "cx210ded1e8e109a93c89e9e5a5d0dcbc48ef90394"
+            ]
+        },
+        {
+            "id": "idoge",
+            "name": "iDoge",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx3fd4769e413657304d4928b95b88fd6eb53f9a8b",
+                "cxf7c59acb61a6d0c038582ea134dfcf65beebd00b"
+            ]
+        },
+                {
+            "id": "crown",
+            "name": "CROWN",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx28b2ec885b50c8a93da752f2d0467a67127a70e8"
+            ]
+        },
+        {
+            "id": "fin",
+            "name": "Fin Token",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx785d504f44b5d2c8dac04c5a1ecd75f18ee57d16"
+            ]
+        },
+        {
+            "id": "sarch",
+            "name": "Staked ARCH",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxfe94530ee0d159db3e5b7dcffbcd0dfb360075c0"
+            ]
+        },
+        {
+            "id": "sarch",
+            "name": "Staked ARCH",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cxfe94530ee0d159db3e5b7dcffbcd0dfb360075c0"
+            ]
+        },
+        {
+            "id": "gbet",
+            "name": "GBET Token",
+            "description": "",
+            "url": "",
+            "logo": "",
+            "contracts": [
+                "cx6139a27c15f1653471ffba0b4b88dc15de7e3267"
+            ]
+        }
+    ],
+    "tokens": [
+        {
+            "id": "balanced",
+            "name": "Balanced",
+            "symbol": "BALN",
+            "contract": "cxf61cd5a45dc9f91c15aa65831a30a90d59a09619"
+        },
+        {
+            "id": "omm",
+            "name": "Omm",
+            "symbol": "OMM",
+            "contract": "cx1a29259a59f463a67bb2ef84398b30ca56b5830a"
+        },
+        {
+            "id": "craft",
+            "name": "Craft",
+            "symbol": "CFT",
+            "contract": "cx2e6d0fc0eca04965d06038c8406093337f085fcf"
+        },
+        {
+            "id": "sicx",
+            "name": "Staked ICX",
+            "symbol": "sICX",
+            "contract": "cx2609b924e33ef00b648a409245c7ea394c467824"
+        },
+        {
+            "id": "bnusd",
+            "name": "Balanced Dollar",
+            "symbol": "bnUSD",
+            "contract": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"
+        },
+        {
+            "id": "balanced",
+            "name": "Balanced",
+            "symbol": "BALN",
+            "contract": "cxf61cd5a45dc9f91c15aa65831a30a90d59a09619"
+        },
+        {
+            "id": "crown",
+            "name": "CROWN",
+            "symbol": "CROWN",
+            "contract": "cx28b2ec885b50c8a93da752f2d0467a67127a70e8"
+        },
+        {
+            "id": "fin",
+            "name": "FIN Token",
+            "symbol": "FIN",
+            "contract": "cx785d504f44b5d2c8dac04c5a1ecd75f18ee57d16"
+        },
+        {
+            "id": "sarch",
+            "name": "Staked ARCH",
+            "symbol": "sARCH",
+            "contract": "cxfe94530ee0d159db3e5b7dcffbcd0dfb360075c0"
+        },
+        {
+            "id": "gbet",
+            "name": "GBET Token",
+            "symbol": "GBET",
+            "contract": "cx6139a27c15f1653471ffba0b4b88dc15de7e3267"
+        },
+        {
+            "id": "blobble",
+            "name": "Blobble STake Token",
+            "symbol": "BST",
+            "contract": "cxf14dea1cff7ceb29a46e6d04533a08f84441e41d"
+        }
+    ]
+}

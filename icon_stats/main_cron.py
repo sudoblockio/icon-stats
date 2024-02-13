@@ -1,13 +1,17 @@
 import asyncio
-from typing import Callable, TypedDict, Coroutine, Any
+from typing import Any, Callable, Coroutine, TypedDict
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from loguru import logger
 from prometheus_client import start_http_server
 
 from icon_stats.config import config
 from icon_stats.crons import (
-    top_tokens,
+    application_stats,
+    applications_refresh,
     cmc_cryptocurrency_quotes_latest,
+    contract_stats,
+    token_stats,
 )
 
 AsyncCallable = Callable[..., Coroutine[Any, Any, Any]]
@@ -20,14 +24,25 @@ class Cron(TypedDict):
 
 CRONS: list[Cron] = [
     # {
-    #     "func": top_tokens.run_top_tokens,
-    #     "interval": 600,
-    # },
+    #     "func": cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest,
+    #     "interval": 120,
+    # }
     {
-        "func": cmc_cryptocurrency_quotes_latest.run_cmc_cryptocurrency_quotes_latest,
-        "interval": 120,
-    }
-
+        "func": applications_refresh.run_applications_refresh,
+        "interval": 86400,
+    },
+    {
+        "func": contract_stats.run_contract_stats,
+        "interval": 3600 * 4,
+    },
+    {
+        "func": token_stats.run_token_stats,
+        "interval": 3600 * 4,
+    },
+    {
+        "func": application_stats.run_application_stats,
+        "interval": 3600 * 4,
+    },
 ]
 
 
@@ -35,7 +50,6 @@ async def main():
     logger.info("Starting metrics server.")
     start_http_server(config.METRICS_PORT, config.METRICS_ADDRESS)
 
-    # sched = BlockingScheduler()
     sched = AsyncIOScheduler()
 
     for i in CRONS:
@@ -49,7 +63,6 @@ async def main():
             seconds=i["interval"],
             id=i["func"].__name__,
         )
-        pass
     sched.start()
     try:
         while True:

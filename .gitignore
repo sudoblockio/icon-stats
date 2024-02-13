@@ -1,6 +1,8 @@
 .idea/
 .vscode/
 
+icondashboard-list-apps
+
 .env
 .env.test
 .old

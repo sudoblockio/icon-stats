@@ -1,9 +1,10 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlmodel import select
-from pydantic import BaseModel
-from datetime import datetime
 
 from icon_stats.db import get_session_api
 from icon_stats.models.cmc_cryptocurrency_quotes_latest import CmcListingsLatestQuote
@@ -29,9 +30,9 @@ class ExchangesLegacyResponse(BaseModel):
     data: ExchangesLegacyResponseData
 
 
-@router.get("/stats/exchanges/legacy", response_model=ExchangesLegacyResponse)
+@router.get("/exchanges/legacy", response_model=ExchangesLegacyResponse)
 async def get_exchange_prices(
-        session: AsyncSession = Depends(get_session_api),
+    session: AsyncSession = Depends(get_session_api),
 ) -> ExchangesLegacyResponse:
     """Return list of delegations."""
     query = (
@@ -45,7 +46,9 @@ async def get_exchange_prices(
     data = result.scalars().first()
 
     if not data:
-        raise HTTPException(status_code=status.HTTP_204_NO_CONTENT)  # Raise an HTTPException for the 204 status
+        raise HTTPException(
+            status_code=status.HTTP_204_NO_CONTENT
+        )  # Raise an HTTPException for the 204 status
 
     exchanges_legacy_response_data = ExchangesLegacyResponseData(
         marketName="coinmarketcap",
