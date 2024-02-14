@@ -28,6 +28,10 @@ class Application(BaseSQLModel, table=True):
     fees_burned_24h: Optional[int] = Field(None)
     fees_burned_7d: Optional[int] = Field(None)
     fees_burned_30d: Optional[int] = Field(None)
+    # Transaction addresses
+    transaction_addresses_24h: Optional[int] = Field(None)
+    transaction_addresses_7d: Optional[int] = Field(None)
+    transaction_addresses_30d: Optional[int] = Field(None)
     # Token Transfers
     token_transfers_24h: Optional[int] = Field(None)
     token_transfers_7d: Optional[int] = Field(None)
@@ -36,6 +40,10 @@ class Application(BaseSQLModel, table=True):
     volume_24h: Optional[float] = Field(None)
     volume_7d: Optional[float] = Field(None)
     volume_30d: Optional[float] = Field(None)
+    # Token transfer addresses
+    token_transfer_addresses_24h: Optional[int] = Field(None)
+    token_transfer_addresses_7d: Optional[int] = Field(None)
+    token_transfer_addresses_30d: Optional[int] = Field(None)
 
     last_updated_timestamp: Optional[int] = Field(None)
 

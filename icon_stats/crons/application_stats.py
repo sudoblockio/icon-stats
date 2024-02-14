@@ -24,7 +24,7 @@ async def get_tokens_sum(column, application_id) -> int:
     async with get_session(db_name="stats") as session:
         query = text(
             f"""
-            select sum({column})
+            select sum(t.{column})
             from stats.tokens as t inner join stats.contracts as c
             on t.address = c.address
             where c.application_id = '{application_id}'
@@ -45,6 +45,10 @@ async def run_application_stats():
         i.fees_burned_24h = await get_contracts_sum("fees_burned_24h", i.id)
         i.fees_burned_7d = await get_contracts_sum("fees_burned_7d", i.id)
         i.fees_burned_30d = await get_contracts_sum("fees_burned_30d", i.id)
+        # Unique transaction addresses
+        i.transaction_addresses_24h = await get_contracts_sum("unique_addresses_24h", i.id)
+        i.transaction_addresses_7d = await get_contracts_sum("unique_addresses_7d", i.id)
+        i.transaction_addresses_30d = await get_contracts_sum("unique_addresses_30d", i.id)
         #
         i.token_transfers_24h = await get_tokens_sum("token_transfers_24h", i.id)
         i.token_transfers_7d = await get_tokens_sum("token_transfers_7d", i.id)
@@ -53,7 +57,11 @@ async def run_application_stats():
         i.volume_24h = await get_tokens_sum("volume_24h", i.id)
         i.volume_7d = await get_tokens_sum("volume_7d", i.id)
         i.volume_30d = await get_tokens_sum("volume_30d", i.id)
-        #
+        # Unique token transfer addresses
+        i.token_transfer_addresses_24h = await get_tokens_sum("unique_addresses_24h", i.id)
+        i.token_transfer_addresses_7d = await get_tokens_sum("unique_addresses_7d", i.id)
+        i.token_transfer_addresses_30d = await get_tokens_sum("unique_addresses_30d", i.id)
+
         i.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
         await i.upsert()
 
