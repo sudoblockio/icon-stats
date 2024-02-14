@@ -48,6 +48,28 @@ async def get_fees_sum(address, start_time):
         return int(sum([int(i[0], 0) for i in hex_fees]) / 1e18)
 
 
+async def get_unique_addresses(address, start_time):
+    async with get_session(db_name="transformer") as session:
+        query = text(
+            f"""
+            SELECT COUNT(DISTINCT address)
+            FROM (
+                SELECT from_address AS address
+                FROM token_transfers
+                WHERE token_contract_address = '{address}'
+                  AND block_timestamp > {start_time}
+                UNION
+                SELECT to_address AS address
+                FROM token_transfers
+                WHERE token_contract_address = '{address}'
+                  AND block_timestamp > {start_time}
+            ) AS combined_addresses;
+            """
+        )
+        result = await session.execute(query)
+        return result.scalar()
+
+
 async def run_token_stats():
     """This refreshes the application list."""
     logger.info(f"Starting {__name__} cron")
@@ -57,9 +79,7 @@ async def run_token_stats():
     for t in [1, 7, 30]:
         times[t] = int((current_timestamp - 86400 * t) * 1e6)
 
-    tokens_db = await Token.get_all()
-
-    for t in tokens_db:
+    for t in await Token.get_all():
         # Token transfers
         t.token_transfers_24h = await get_token_transfer_count(t.address, times[1])
         t.token_transfers_7d = await get_token_transfer_count(t.address, times[7])
@@ -72,6 +92,10 @@ async def run_token_stats():
         t.fees_burned_24h = await get_fees_sum(t.address, times[1])
         t.fees_burned_7d = await get_fees_sum(t.address, times[7])
         t.fees_burned_30d = await get_fees_sum(t.address, times[30])
+        # Unique addresses
+        t.unique_addresses_24h = await get_unique_addresses(t.address, times[1])
+        t.unique_addresses_7d = await get_unique_addresses(t.address, times[7])
+        t.unique_addresses_30d = await get_unique_addresses(t.address, times[30])
 
         t.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
         await t.upsert()

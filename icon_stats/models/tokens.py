@@ -39,6 +39,10 @@ class Token(BaseSQLModel, table=True):
     fees_burned_24h: Optional[int] = Field(None)
     fees_burned_7d: Optional[int] = Field(None)
     fees_burned_30d: Optional[int] = Field(None)
+    # Unique addresses
+    unique_addresses_24h: Optional[int] = Field(None)
+    unique_addresses_7d: Optional[int] = Field(None)
+    unique_addresses_30d: Optional[int] = Field(None)
 
     last_updated_timestamp: Optional[int] = Field(None)
 
