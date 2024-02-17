@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import condecimal
+from pydantic import condecimal, field_validator
 from sqlalchemy import Column, ForeignKey, String
 from sqlalchemy.orm import declared_attr
 from sqlmodel import Field, Relationship
 
+from icon_stats.clients.types import HexInt
 from icon_stats.db_base import BaseSQLModel
 
 if TYPE_CHECKING:
@@ -24,7 +25,9 @@ class Token(BaseSQLModel, table=True):
 
     name: Optional[str] = Field(None)
     symbol: Optional[str] = Field(None)
-    decimals: Optional[int] = Field(None)
+    decimals: Optional[str] = Field(None)
+    is_nft: Optional[bool] = Field(None)
+    contract_type: Optional[str] = Field(None)
 
     # Volume
     volume_24h: Optional[float] = Field(None)

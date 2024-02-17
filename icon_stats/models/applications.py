@@ -15,10 +15,10 @@ class Application(BaseSQLModel, table=True):
 
     contracts: list["Contract"] = Relationship(back_populates="application")
 
-    name: Optional[str] = Field(...)
-    description: Optional[str] = Field(...)
-    url: Optional[str] = Field(...)
-    logo: Optional[str] = Field(...)
+    name: Optional[str] = Field(None)
+    description: Optional[str] = Field(None)
+    url: Optional[str] = Field(None)
+    logo: Optional[str] = Field(None)
 
     # Transactions
     transactions_24h: Optional[int] = Field(None)
