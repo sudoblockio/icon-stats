@@ -1,11 +1,9 @@
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import condecimal, field_validator
 from sqlalchemy import Column, ForeignKey, String
 from sqlalchemy.orm import declared_attr
 from sqlmodel import Field, Relationship
 
-from icon_stats.clients.types import HexInt
 from icon_stats.db_base import BaseSQLModel
 
 if TYPE_CHECKING:
@@ -38,14 +36,23 @@ class Token(BaseSQLModel, table=True):
     token_transfers_24h: Optional[int] = Field(None)
     token_transfers_7d: Optional[int] = Field(None)
     token_transfers_30d: Optional[int] = Field(None)
+    token_transfers_24h_prev: Optional[int] = Field(None)
+    token_transfers_7d_prev: Optional[int] = Field(None)
+    token_transfers_30d_prev: Optional[int] = Field(None)
     # Fees burned
     fees_burned_24h: Optional[int] = Field(None)
     fees_burned_7d: Optional[int] = Field(None)
     fees_burned_30d: Optional[int] = Field(None)
+    fees_burned_24h_prev: Optional[int] = Field(None)
+    fees_burned_7d_prev: Optional[int] = Field(None)
+    fees_burned_30d_prev: Optional[int] = Field(None)
     # Unique addresses
     unique_addresses_24h: Optional[int] = Field(None)
     unique_addresses_7d: Optional[int] = Field(None)
     unique_addresses_30d: Optional[int] = Field(None)
+    unique_addresses_24h_prev: Optional[int] = Field(None)
+    unique_addresses_7d_prev: Optional[int] = Field(None)
+    unique_addresses_30d_prev: Optional[int] = Field(None)
 
     last_updated_timestamp: Optional[int] = Field(None)
 

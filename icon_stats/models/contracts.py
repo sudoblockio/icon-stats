@@ -30,14 +30,23 @@ class Contract(BaseSQLModel, table=True):
     transactions_24h: Optional[int] = Field(None)
     transactions_7d: Optional[int] = Field(None)
     transactions_30d: Optional[int] = Field(None)
+    transactions_24h_prev: Optional[int] = Field(None)
+    transactions_7d_prev: Optional[int] = Field(None)
+    transactions_30d_prev: Optional[int] = Field(None)
     # Fees burned
     fees_burned_24h: Optional[int] = Field(None)
     fees_burned_7d: Optional[int] = Field(None)
     fees_burned_30d: Optional[int] = Field(None)
+    fees_burned_24h_prev: Optional[int] = Field(None)
+    fees_burned_7d_prev: Optional[int] = Field(None)
+    fees_burned_30d_prev: Optional[int] = Field(None)
     # Unique addresses
     unique_addresses_24h: Optional[int] = Field(None)
     unique_addresses_7d: Optional[int] = Field(None)
     unique_addresses_30d: Optional[int] = Field(None)
+    unique_addresses_24h_prev: Optional[int] = Field(None)
+    unique_addresses_7d_prev: Optional[int] = Field(None)
+    unique_addresses_30d_prev: Optional[int] = Field(None)
 
     last_updated_timestamp: Optional[int] = Field(None)
 
