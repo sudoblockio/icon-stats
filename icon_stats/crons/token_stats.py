@@ -28,8 +28,8 @@ async def get_token_trans_count_p(address, start_time):
             f"""
             select count(*) from token_transfers
              where token_contract_address = '{address}' and
-             block_timestamp > {get_prev_star_time(start_time)}
-             and block_timestamp < {start_time}
+             block_timestamp < {get_prev_star_time(start_time)}
+             and block_timestamp > {start_time}
             """
         )
         result = await session.execute(query)
@@ -55,8 +55,8 @@ async def get_token_transfer_volume_p(address, start_time):
             f"""
             select sum(value_decimal) from token_transfers
              where token_contract_address = '{address}' and
-             block_timestamp > {start_time} and
-             block_timestamp < {get_prev_star_time(start_time)}
+             block_timestamp < {start_time} and
+             block_timestamp > {get_prev_star_time(start_time)}
             """
         )
         result = await session.execute(query)
@@ -83,8 +83,8 @@ async def get_fees_sum_p(address, start_time):
             f"""
             select transaction_fee from token_transfers
              where token_contract_address = '{address}' and
-             block_timestamp > {start_time} and
-             block_timestamp < {get_prev_star_time(start_time)}
+             block_timestamp < {start_time} and
+             block_timestamp > {get_prev_star_time(start_time)}
             """
         )
         result = await session.execute(query)
@@ -123,14 +123,14 @@ async def get_unique_addrs_p(address, start_time):
                 SELECT from_address AS address
                 FROM token_transfers
                 WHERE token_contract_address = '{address}'
-                  AND block_timestamp > {start_time}
-                  AND block_timestamp < {get_prev_star_time(start_time)}
+                  AND block_timestamp < {start_time}
+                  AND block_timestamp > {get_prev_star_time(start_time)}
                 UNION
                 SELECT to_address AS address
                 FROM token_transfers
                 WHERE token_contract_address = '{address}'
-                  AND block_timestamp > {start_time}
-                  AND block_timestamp < {get_prev_star_time(start_time)}
+                  AND block_timestamp < {start_time}
+                  AND block_timestamp > {get_prev_star_time(start_time)}
             ) AS combined_addresses;
             """
         )

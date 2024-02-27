@@ -11,6 +11,7 @@ from icon_stats.crons import (
     applications_refresh,
     cmc_cryptocurrency_quotes_latest,
     contract_stats,
+    ecosystem_stats,
     token_stats,
 )
 
@@ -42,6 +43,10 @@ CRONS: list[Cron] = [
     {
         "func": application_stats.run_application_stats,
         "interval": 3600 * 4,
+    },
+    {
+        "func": ecosystem_stats.run_ecosystem_stats,
+        "interval": 3600 * 6,
     },
 ]
 

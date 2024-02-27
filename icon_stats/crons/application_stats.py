@@ -1,10 +1,9 @@
 from datetime import datetime, timezone
-from typing import Awaitable, Callable, Type
+from typing import Awaitable, Callable
 
 from sqlalchemy.sql import text
 
 from icon_stats.db import get_session
-from icon_stats.db_base import BaseSQLModel
 from icon_stats.log import logger
 from icon_stats.metrics import prom_metrics
 from icon_stats.models.applications import Application

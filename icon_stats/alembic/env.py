@@ -13,6 +13,7 @@ from icon_stats.db import ASYNC_CONNECTION_STRING
 #     CmcListingsLatestQuote  # noqa
 from icon_stats.models.applications import Application
 from icon_stats.models.contracts import Contract
+from icon_stats.models.ecosystem import Ecosystem
 from icon_stats.models.tokens import Token
 
 config = context.config

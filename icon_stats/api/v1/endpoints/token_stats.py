@@ -8,9 +8,29 @@ from sqlmodel import select
 from icon_stats.db import get_session_api
 from icon_stats.models.applications import Application
 from icon_stats.models.contracts import Contract
+from icon_stats.models.ecosystem import Ecosystem
 from icon_stats.models.tokens import Token
 
 router = APIRouter()
+
+
+@router.get("/ecosystem")
+async def get_ecosystem_stats(
+    response: Response,
+    session: AsyncSession = Depends(get_session_api),
+) -> list[Ecosystem]:
+    """Return list of ecosystem stats."""
+    query = select(Ecosystem)
+
+    result = await session.execute(query)
+    output = result.scalars().all()
+
+    if len(output) == 0:
+        response.status_code = HTTPStatus.NO_CONTENT.value
+        return []
+
+    response.headers["x-total-count"] = str(len(output))
+    return output
 
 
 @router.get("/applications")
