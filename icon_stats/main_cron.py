@@ -91,7 +91,7 @@ async def main():
             current_timestamp = datetime.now(timezone.utc).timestamp()
             if last_updated_timestamp is None:
                 await i["func"]()
-            elif current_timestamp - last_updated_timestamp > i["interval"]:
+            elif current_timestamp - last_updated_timestamp[0] > i["interval"]:
                 await i["func"]()
 
         # Then run them in the scheduler
