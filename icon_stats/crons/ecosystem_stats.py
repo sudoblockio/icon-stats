@@ -190,6 +190,7 @@ async def run_ecosystem_stats():
     ]:
         await set_attr_func(model, column, func, func_p)
 
+    model.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
     await model.upsert()
 
     prom_metrics.cron_ran.inc()
