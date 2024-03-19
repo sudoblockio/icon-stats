@@ -52,12 +52,6 @@ class Settings(BaseSettings):
     COMMUNITY_API_ENDPOINT: str = "https://tracker.icon.community"
 
     # DB
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "changeme"
-    POSTGRES_SERVER: str = "127.0.0.1"
-    POSTGRES_PORT: str = "5432"
-    POSTGRES_DATABASE: str = "postgres"
-
     db: DbConfigs = Field(default_factory=DbConfigs)
 
     # Kafka
