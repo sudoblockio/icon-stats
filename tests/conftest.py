@@ -102,7 +102,8 @@ def config_override(request):
 
         # If .env.test does not exist, do nothing
         if not os.path.exists(test_env_file):
-            raise Exception("File needs to be there otherwise can't run tests...")
+            # Skip if the file does not exist
+            yield
 
         # Get environment variables from .env.test
         loader = EnvLoader.instance()

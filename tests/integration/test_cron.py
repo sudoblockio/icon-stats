@@ -54,7 +54,7 @@ def mock_application_refresh(mocker):
     [
         # applications_refresh.run_applications_refresh,
         # contract_stats.run_contract_stats,
-        # token_stats.run_token_stats,
+        token_stats.run_token_stats,
         # application_stats.run_application_stats,
         # ecosystem_stats.run_ecosystem_stats,
     ],
