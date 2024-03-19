@@ -31,6 +31,9 @@ class Token(BaseSQLModel, table=True):
     volume_24h: Optional[float] = Field(None)
     volume_7d: Optional[float] = Field(None)
     volume_30d: Optional[float] = Field(None)
+    volume_24h_prev: Optional[float] = Field(None)
+    volume_7d_prev: Optional[float] = Field(None)
+    volume_30d_prev: Optional[float] = Field(None)
 
     # Token Transfers
     token_transfers_24h: Optional[int] = Field(None)

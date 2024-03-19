@@ -147,6 +147,7 @@ async def run_token_stats():
             ("token_transfers", get_token_trans_count, get_token_trans_count_p),
             ("fees_burned", get_fees_sum, get_fees_sum_p),
             ("unique_addresses", get_unique_addrs, get_unique_addrs_p),
+            ("volume", get_token_transfer_volume, get_token_transfer_volume_p),
         ]:
             await set_addr_func(t, column, func, func_p)
 
