@@ -87,7 +87,7 @@ async def main():
         if i["table"] is not None:
             last_updated_timestamp = await get_last_updated_timestamp(i["table"])
             current_timestamp = datetime.now(timezone.utc).timestamp()
-            if last_updated_timestamp is None:
+            if last_updated_timestamp is None or last_updated_timestamp[0] is None:
                 await i["func"]()
             elif current_timestamp - last_updated_timestamp[0] > i["interval"]:
                 await i["func"]()
