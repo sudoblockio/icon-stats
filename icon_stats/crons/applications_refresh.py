@@ -101,7 +101,7 @@ async def get_all_tokens():
             f"""
             select address, name, symbol, decimals, contract_type, is_nft
              from contracts
-             where is_token = true
+             where is_token = true and is_nft = false
             """
         )
         result = await session.execute(query)
