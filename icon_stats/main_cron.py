@@ -17,11 +17,6 @@ from icon_stats.crons import (
     token_stats,
 )
 from icon_stats.db import get_session
-from icon_stats.db_base import BaseSQLModel
-from icon_stats.models.applications import Application
-from icon_stats.models.contracts import Contract
-from icon_stats.models.ecosystem import Ecosystem
-from icon_stats.models.tokens import Token
 
 AsyncCallable = Callable[..., Coroutine[Any, Any, Any]]
 
@@ -83,6 +78,9 @@ async def main():
     start_http_server(config.METRICS_PORT, config.METRICS_ADDRESS)
 
     sched = AsyncIOScheduler()
+
+    # Refresh the list right away
+    await applications_refresh.run_applications_refresh()
 
     for i in CRONS:
         # Run the jobs immediately in order
