@@ -11,17 +11,14 @@ from icon_stats.api.v1.router import api_router
 from icon_stats.config import config
 from icon_stats.log import logger
 
-description = """
-Backend that maintains indexes of all pools, tokens, and associated data such as 
- prices, volumes, and fees for the stats page and coin-market-cap data feeds. 
-"""
+description = """Ecosystem wide statistics."""
 
 tags_metadata = [
-    {"name": "balanced-backend", "description": description, },
+    {"name": "icon-stats", "description": description, },
 ]
 
 app = FastAPI(
-    title="Balanced Backend Service",
+    title="ICON Statistics Service",
     description=description,
     version=config.VERSION,
     openapi_tags=tags_metadata,
