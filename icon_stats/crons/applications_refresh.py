@@ -14,16 +14,6 @@ from icon_stats.models.contracts import Contract
 from icon_stats.models.tokens import Token
 
 
-def get_remote_applications() -> (dict, dict):
-    base_url = "https://raw.githubusercontent.com/PARROT9-LTD"
-    r = requests.get(f"{base_url}/icondashboard-list-apps/main/apps/index.json")
-    if r.status_code != 200:
-        raise Exception(f"Error getting application list: {r.status_code}")
-    output = r.json()
-
-    return output
-
-
 def get_local_applications() -> (dict, dict):
     data_path = os.path.join(os.path.dirname(__file__), "..", "..", "data")
     with open(f"{data_path}/applications.json") as f:
@@ -67,8 +57,7 @@ async def create_other_application():
 
 
 async def create_applications():
-    output = get_remote_applications()
-    # output = get_local_applications()
+    output = get_local_applications()
 
     applications_raw = output["apps"]
     await create_other_application()
