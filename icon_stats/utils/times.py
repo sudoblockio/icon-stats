@@ -47,7 +47,8 @@ async def set_addr_func(
         timestamp_ago = int((current_timestamp - 86400 * days) * 1e6)
 
         column_name = f"{column}_{str_name}"
-        setattr(model, column_name, await func(model.address, timestamp_ago))
+        out = await func(model.address, timestamp_ago)
+        setattr(model, column_name, out if out is not None else 0)
         # The previous columns
-        prev_column_name = f"{column_name}_prev"
-        setattr(model, prev_column_name, await func_p(model.address, timestamp_ago))
+        out = await func_p(model.address, timestamp_ago)
+        setattr(model, f"{column_name}_prev", out if out is not None else 0)
