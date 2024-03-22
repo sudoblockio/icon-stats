@@ -150,6 +150,7 @@ async def run_token_stats():
             ("volume", get_token_transfer_volume, get_token_transfer_volume_p),
         ]:
             await set_addr_func(t, column, func, func_p)
+            await t.upsert()
 
         t.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
         await t.upsert()
