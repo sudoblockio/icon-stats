@@ -28,8 +28,8 @@ async def get_token_trans_count_p(address, start_time):
             f"""
             select count(*) from token_transfers
              where token_contract_address = '{address}' and
-             block_timestamp < {get_prev_star_time(start_time)}
-             and block_timestamp > {start_time}
+             block_timestamp > {get_prev_star_time(start_time)}
+             and block_timestamp < {start_time}
             """
         )
         result = await session.execute(query)

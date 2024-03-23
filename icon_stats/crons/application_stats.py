@@ -59,46 +59,38 @@ async def set_field(
 async def run_application_stats():
     logger.info(f"Starting {__name__} cron")
 
-    for i in await Application.get_all():
+    for app in await Application.get_all():
         for contract_column in [
             "transactions",
             "fees_burned",
         ]:
-            await set_field(i, contract_column, get_contracts_sum)
+            await set_field(app, contract_column, get_contracts_sum)
         for token_column in [
             "token_transfers",
             "volume",
         ]:
-            await set_field(i, token_column, get_tokens_sum)
+            await set_field(app, token_column, get_tokens_sum)
         # Unique transaction addresses
-        await set_field_not_zero(
-            i, "transaction_addresses_24h",
-            get_contracts_sum, "unique_addresses_24h"
-        )
-        await set_field_not_zero(
-            i, "transaction_addresses_7d",
-            get_contracts_sum, "unique_addresses_7d"
-        )
-        await set_field_not_zero(
-            i, "transaction_addresses_30d",
-            get_contracts_sum, "unique_addresses_30d"
-        )
-        # Unique token transfer addresses
-        await set_field_not_zero(
-            i, "token_transfer_addresses_24h",
-            get_tokens_sum, "unique_addresses_24h"
-        )
-        await set_field_not_zero(
-            i, "token_transfer_addresses_7d",
-            get_tokens_sum, "unique_addresses_7d"
-        )
-        await set_field_not_zero(
-            i, "token_transfer_addresses_30d",
-            get_tokens_sum, "unique_addresses_30d"
-        )
+        for i in ["24h", "7d", "30d"]:
+            await set_field_not_zero(
+                app, f"transaction_addresses_{i}",
+                get_contracts_sum, f"unique_addresses_{i}"
+            )
+            await set_field_not_zero(
+                app, f"transaction_addresses_{i}_prev",
+                get_contracts_sum, f"unique_addresses_{i}_prev"
+            )
+            await set_field_not_zero(
+                app, f"token_transfer_addresses_{i}",
+                get_tokens_sum, f"unique_addresses_{i}"
+            )
+            await set_field_not_zero(
+                app, f"token_transfer_addresses_{i}_prev",
+                get_tokens_sum, f"unique_addresses_{i}_prev"
+            )
 
-        i.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
-        await i.upsert()
+        app.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
+        await app.upsert()
 
     prom_metrics.cron_ran.inc()
     logger.info(f"Ending {__name__} cron")
