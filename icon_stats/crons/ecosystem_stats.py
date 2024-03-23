@@ -56,7 +56,8 @@ async def get_fees_sum_p(start_time):
         query = text(
             f"""
             select transaction_fee from transactions
-             where block_timestamp > {start_time} and 
+             where block_timestamp < {get_prev_star_time(start_time)}
+             and block_timestamp > {start_time} and
              score_address != 'hx1000000000000000000000000000000000000000'
             """
         )
