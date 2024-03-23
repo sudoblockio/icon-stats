@@ -1,7 +1,6 @@
 import json
 import os
 
-import requests
 from sqlalchemy import text
 
 from icon_stats.client import get_rpc_client
