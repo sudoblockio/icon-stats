@@ -187,7 +187,7 @@ async def run_ecosystem_stats():
     for column, func, func_p in [
         ("transactions", get_transaction_count, get_transaction_count_p),
         ("fees_burned", get_fees_sum, get_fees_sum_p),
-        ("unique_addresses", get_unique_addresses, get_unique_addresses_p),
+        ("transaction_addresses", get_unique_addresses, get_unique_addresses_p),
         ("token_transfers", get_token_trans_count, get_token_trans_count_p),
         ("token_transfer_addresses", get_unique_token_addrs, get_unique_token_addrs_p),
     ]:

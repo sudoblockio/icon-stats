@@ -46,6 +46,13 @@ class Ecosystem(BaseSQLModel, table=True):
     token_transfer_addresses_24h_prev: Optional[int] = Field(None)
     token_transfer_addresses_7d_prev: Optional[int] = Field(None)
     token_transfer_addresses_30d_prev: Optional[int] = Field(None)
+    # Unique addresses
+    unique_addresses_24h: Optional[int] = Field(None)
+    unique_addresses_7d: Optional[int] = Field(None)
+    unique_addresses_30d: Optional[int] = Field(None)
+    unique_addresses_24h_prev: Optional[int] = Field(None)
+    unique_addresses_7d_prev: Optional[int] = Field(None)
+    unique_addresses_30d_prev: Optional[int] = Field(None)
 
     last_updated_timestamp: Optional[int] = Field(None)
 
