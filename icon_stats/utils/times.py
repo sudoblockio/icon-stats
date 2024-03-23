@@ -48,7 +48,7 @@ async def set_addr_func(
         timestamp_ago = int((current_timestamp - 86400 * days) * 1e6)
         column_name = f"{column}_{str_name}"
 
-        logger.info(f"{__name__} for column {column_name} on model {model.__name__}")
+        logger.info(f"{__name__} for column {column_name}")
 
         out = await func(model.address, timestamp_ago)
         setattr(model, column_name, out if out is not None else 0)
