@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from typing import Awaitable, Callable, Type
 
 from icon_stats.db_base import BaseSQLModel
+from icon_stats.log import logger
 
 
 def convert_str_date(date_str: str) -> datetime:
@@ -45,8 +46,10 @@ async def set_addr_func(
     for days, str_name in [(1, "24h"), (7, "7d"), (30, "30d")]:
         current_timestamp = datetime.now(timezone.utc).timestamp()
         timestamp_ago = int((current_timestamp - 86400 * days) * 1e6)
-
         column_name = f"{column}_{str_name}"
+
+        logger.info(f"{__name__} for column {column_name} on model {model.__name__}")
+
         out = await func(model.address, timestamp_ago)
         setattr(model, column_name, out if out is not None else 0)
         # The previous columns
