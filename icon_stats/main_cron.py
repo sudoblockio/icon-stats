@@ -84,7 +84,7 @@ async def main():
         await applications_refresh.run_applications_refresh()
     else:
         logger.info("Not mainnet - skipping since we don't have a list of apps.")
-        return
+        await asyncio.Future()
 
     for i in CRONS:
         # Run the jobs immediately in order
