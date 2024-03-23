@@ -79,7 +79,7 @@ async def main():
 
     sched = AsyncIOScheduler()
 
-    if config.NETWORK_NAME != 'mainnet':
+    if config.NETWORK_NAME == 'mainnet':
         # Refresh the list right away
         await applications_refresh.run_applications_refresh()
     else:
