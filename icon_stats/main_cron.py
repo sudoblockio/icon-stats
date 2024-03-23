@@ -79,8 +79,12 @@ async def main():
 
     sched = AsyncIOScheduler()
 
-    # Refresh the list right away
-    await applications_refresh.run_applications_refresh()
+    if config.NETWORK_NAME != 'mainnet':
+        # Refresh the list right away
+        await applications_refresh.run_applications_refresh()
+    else:
+        logger.info("Not mainnet - skipping since we don't have a list of apps.")
+        return
 
     for i in CRONS:
         # Run the jobs immediately in order
