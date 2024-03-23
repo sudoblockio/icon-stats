@@ -56,7 +56,8 @@ async def get_fees_sum_p(start_time):
         query = text(
             f"""
             select transaction_fee from transactions
-             where block_timestamp > {start_time}
+             where block_timestamp > {start_time} and 
+             score_address != 'hx1000000000000000000000000000000000000000'
             """
         )
         result = await session.execute(query)
@@ -69,7 +70,7 @@ async def get_unique_addresses(start_time):
         query = text(
             f"""
             select count(distinct from_address) from transactions
-             block_timestamp > {start_time}
+             where block_timestamp > {start_time}
             """
         )
         result = await session.execute(query)
@@ -80,9 +81,9 @@ async def get_unique_addresses_p(start_time):
     async with get_session(db_name="transformer") as session:
         query = text(
             f"""
-            select count(distinct from_address) from transactions
-             block_timestamp > {start_time} and
-             score_address != 'hx1000000000000000000000000000000000000000'
+            select count(distinct from_address) from transactions            
+             where block_timestamp < {get_prev_star_time(start_time)}
+             and block_timestamp > {start_time}
             """
         )
         result = await session.execute(query)
@@ -168,10 +169,11 @@ async def set_attr_func(
         timestamp_ago = int((current_timestamp - 86400 * days) * 1e6)
 
         column_name = f"{column}_{str_name}"
-        setattr(model, column_name, await func(timestamp_ago))
+        out = await func(timestamp_ago)
+        setattr(model, column_name, out if out is not None else 0)
         # The previous columns
-        prev_column_name = f"{column_name}_prev"
-        setattr(model, prev_column_name, await func_p(timestamp_ago))
+        out = await func_p(timestamp_ago)
+        setattr(model, f"{column_name}_prev", out if out is not None else 0)
 
 
 async def run_ecosystem_stats():
@@ -189,6 +191,7 @@ async def run_ecosystem_stats():
         ("token_transfer_addresses", get_unique_token_addrs, get_unique_token_addrs_p),
     ]:
         await set_attr_func(model, column, func, func_p)
+        await model.upsert()
 
     model.last_updated_timestamp = datetime.now(timezone.utc).timestamp()
     await model.upsert()
