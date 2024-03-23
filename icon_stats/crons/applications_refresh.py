@@ -62,25 +62,21 @@ async def create_applications():
     await create_other_application()
 
     for i in applications_raw:
-        try:
-            application_db = await Application.get(Application.name == i["name"])
-            contracts_list = i.pop("contracts")
-            if application_db is None:
-                application_db = Application(**i)
-            await application_db.upsert()
+        application_db = await Application.get(Application.name == i["name"])
+        contracts_list = i.pop("contracts")
+        if application_db is None:
+            application_db = Application(**i)
+        await application_db.upsert()
 
-            for address in contracts_list:
-                contract_db = await Contract.get(Contract.address == address)
-                if contract_db is None:
-                    contract_db = Contract(
-                        address=address,
-                        application_id=i["id"],
-                    )
-                await update_contract_details(contract_db)
-                await contract_db.upsert()
-
-        except Exception as e:
-            raise e
+        for address in contracts_list:
+            contract_db = await Contract.get(Contract.address == address)
+            if contract_db is None:
+                contract_db = Contract(
+                    address=address,
+                    application_id=i["id"],
+                )
+            await update_contract_details(contract_db)
+            await contract_db.upsert()
 
 
 async def get_all_tokens():
