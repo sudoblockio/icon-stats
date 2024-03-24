@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/sudoblockio/icon-stats/compare/v0.2.0...v0.2.1) (2024-03-23)
+
+
+### Bug Fixes
+
+* prev in various queries ([f59b36f](https://github.com/sudoblockio/icon-stats/commit/f59b36f3716a17b141982b14aee2dad9ad80141f))
+* sleep forver on testnets cron ([ad96e02](https://github.com/sudoblockio/icon-stats/commit/ad96e025ced137fa01f67417a9509e3a97cd41d8))
+
 ## [0.2.0](https://github.com/sudoblockio/icon-stats/compare/v0.1.3...v0.2.0) (2024-03-23)
 
 
