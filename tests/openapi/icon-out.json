@@ -1,0 +1,3595 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Icon",
+    "version": "v0.0.1"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/v1/governance/preps": {
+      "get": {
+        "summary": "Get Preps",
+        "description": "Return list of preps which is limitted to 150 records so no skip.",
+        "operationId": "get_preps_api_v1_governance_preps_get",
+        "parameters": [
+          {
+            "name": "penalties",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Penalties"
+            }
+          },
+          {
+            "name": "failure_count",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Failure Count"
+            }
+          },
+          {
+            "name": "include_unregistered",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Include Unregistered",
+              "default": false
+            }
+          },
+          {
+            "name": "has_public_key",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Has Public Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/preps/{address}": {
+      "get": {
+        "summary": "Get Prep",
+        "description": "Return a single prep.",
+        "operationId": "get_prep_api_v1_governance_preps__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/delegations/{address}": {
+      "get": {
+        "summary": "Get Delegations",
+        "description": "Return list of delegations.",
+        "operationId": "get_delegations_api_v1_governance_delegations__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/votes/{address}": {
+      "get": {
+        "summary": "Get Delegations",
+        "description": "Return list of votes.",
+        "operationId": "get_delegations_api_v1_governance_votes__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/proposals": {
+      "get": {
+        "summary": "Get Proposals",
+        "description": "Return list of proposals",
+        "operationId": "get_proposals_api_v1_governance_proposals_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/rewards/{address}": {
+      "get": {
+        "summary": "Get Delegations",
+        "description": "Return list of delegations.",
+        "operationId": "get_delegations_api_v1_governance_rewards__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/stats/apy/time": {
+      "get": {
+        "summary": "Get Apy Over Time",
+        "description": "Return a time series of APY over time along with other governance stats like total\n delegation / stake and the governance variables needed derive APY.",
+        "operationId": "get_apy_over_time_api_v1_governance_stats_apy_time_get",
+        "parameters": [
+          {
+            "name": "start_timestamp",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Start Timestamp"
+            }
+          },
+          {
+            "name": "end_timestamp",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "End Timestamp"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/stats/commission/time": {
+      "get": {
+        "summary": "Get Commission Over Time",
+        "description": "Return a time series of commission statistics over time.",
+        "operationId": "get_commission_over_time_api_v1_governance_stats_commission_time_get",
+        "parameters": [
+          {
+            "name": "start_timestamp",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Start Timestamp"
+            }
+          },
+          {
+            "name": "end_timestamp",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "End Timestamp"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/governance/stats": {
+      "get": {
+        "summary": "Get Governance Stats",
+        "description": "Get stats - single entry json.",
+        "operationId": "get_governance_stats_api_v1_governance_stats_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/contracts": {
+      "get": {
+        "summary": "Get Contracts",
+        "description": "Return list of contracts",
+        "operationId": "get_contracts_api_v1_contracts_get",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Skip",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Limit",
+              "default": 100
+            }
+          },
+          {
+            "name": "contract_type",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Contract Type"
+            }
+          },
+          {
+            "name": "is_token",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Is Token"
+            }
+          },
+          {
+            "name": "is_nft",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Is Nft"
+            }
+          },
+          {
+            "name": "token_standard",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Token Standard"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/contracts/{address}": {
+      "get": {
+        "summary": "Get Contract",
+        "description": "Return list of contracts",
+        "operationId": "get_contract_api_v1_contracts__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/contracts/social-media/{address}": {
+      "get": {
+        "summary": "Get Contract Social Media",
+        "description": "Return list of contracts",
+        "operationId": "get_contract_social_media_api_v1_contracts_social_media__address__get",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {
+              "title": "Address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "HTTPValidationError",
+                  "properties": {
+                    "detail": {
+                      "title": "Detail",
+                      "items": {
+                        "title": "ValidationError",
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "properties": {
+                          "loc": {
+                            "title": "Location",
+                            "items": {}
+                          },
+                          "msg": {
+                            "title": "Message"
+                          },
+                          "type": {
+                            "title": "Error Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/statistics/ecosystem": {
+      "get": {
+        "summary": "Get Ecosystem Stats",
+        "description": "Return list of ecosystem stats.",
+        "operationId": "get_ecosystem_stats_api_v1_statistics_ecosystem_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Ecosystem Stats Api V1 Statistics Ecosystem Get",
+                  "items": {
+                    "title": "Ecosystem",
+                    "properties": {
+                      "id": {
+                        "title": "Id"
+                      },
+                      "transactions_24h": {
+                        "title": "Transactions 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d": {
+                        "title": "Transactions 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d": {
+                        "title": "Transactions 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_24h_prev": {
+                        "title": "Transactions 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d_prev": {
+                        "title": "Transactions 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d_prev": {
+                        "title": "Transactions 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h": {
+                        "title": "Fees Burned 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d": {
+                        "title": "Fees Burned 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d": {
+                        "title": "Fees Burned 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h_prev": {
+                        "title": "Fees Burned 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d_prev": {
+                        "title": "Fees Burned 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d_prev": {
+                        "title": "Fees Burned 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_24h": {
+                        "title": "Transaction Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_7d": {
+                        "title": "Transaction Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_30d": {
+                        "title": "Transaction Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_24h_prev": {
+                        "title": "Transaction Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_7d_prev": {
+                        "title": "Transaction Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_30d_prev": {
+                        "title": "Transaction Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_24h": {
+                        "title": "Token Transfers 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d": {
+                        "title": "Token Transfers 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d": {
+                        "title": "Token Transfers 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_24h_prev": {
+                        "title": "Token Transfers 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d_prev": {
+                        "title": "Token Transfers 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d_prev": {
+                        "title": "Token Transfers 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_24h": {
+                        "title": "Token Transfer Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_7d": {
+                        "title": "Token Transfer Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_30d": {
+                        "title": "Token Transfer Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_24h_prev": {
+                        "title": "Token Transfer Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_7d_prev": {
+                        "title": "Token Transfer Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_30d_prev": {
+                        "title": "Token Transfer Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "last_updated_timestamp": {
+                        "title": "Last Updated Timestamp",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/statistics/applications": {
+      "get": {
+        "summary": "Get Application Stats",
+        "description": "Return list of application stats.",
+        "operationId": "get_application_stats_api_v1_statistics_applications_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Application Stats Api V1 Statistics Applications Get",
+                  "items": {
+                    "title": "Application",
+                    "properties": {
+                      "id": {
+                        "title": "Id"
+                      },
+                      "name": {
+                        "title": "Name",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "description": {
+                        "title": "Description",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "url": {
+                        "title": "Url",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "logo": {
+                        "title": "Logo",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_24h": {
+                        "title": "Transactions 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d": {
+                        "title": "Transactions 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d": {
+                        "title": "Transactions 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_24h_prev": {
+                        "title": "Transactions 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d_prev": {
+                        "title": "Transactions 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d_prev": {
+                        "title": "Transactions 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h": {
+                        "title": "Fees Burned 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d": {
+                        "title": "Fees Burned 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d": {
+                        "title": "Fees Burned 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h_prev": {
+                        "title": "Fees Burned 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d_prev": {
+                        "title": "Fees Burned 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d_prev": {
+                        "title": "Fees Burned 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_24h": {
+                        "title": "Transaction Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_7d": {
+                        "title": "Transaction Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_30d": {
+                        "title": "Transaction Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_24h_prev": {
+                        "title": "Transaction Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_7d_prev": {
+                        "title": "Transaction Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transaction_addresses_30d_prev": {
+                        "title": "Transaction Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_24h": {
+                        "title": "Token Transfers 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d": {
+                        "title": "Token Transfers 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d": {
+                        "title": "Token Transfers 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_24h_prev": {
+                        "title": "Token Transfers 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d_prev": {
+                        "title": "Token Transfers 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d_prev": {
+                        "title": "Token Transfers 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_24h": {
+                        "title": "Volume 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_7d": {
+                        "title": "Volume 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_30d": {
+                        "title": "Volume 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_24h_prev": {
+                        "title": "Volume 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_7d_prev": {
+                        "title": "Volume 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_30d_prev": {
+                        "title": "Volume 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_24h": {
+                        "title": "Token Transfer Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_7d": {
+                        "title": "Token Transfer Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_30d": {
+                        "title": "Token Transfer Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_24h_prev": {
+                        "title": "Token Transfer Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_7d_prev": {
+                        "title": "Token Transfer Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfer_addresses_30d_prev": {
+                        "title": "Token Transfer Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "last_updated_timestamp": {
+                        "title": "Last Updated Timestamp",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/statistics/contracts": {
+      "get": {
+        "summary": "Get Contract Stats",
+        "description": "Return list of contract stats.",
+        "operationId": "get_contract_stats_api_v1_statistics_contracts_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Contract Stats Api V1 Statistics Contracts Get",
+                  "items": {
+                    "title": "Contract",
+                    "properties": {
+                      "address": {
+                        "title": "Address"
+                      },
+                      "application_id": {
+                        "title": "Application Id"
+                      },
+                      "name": {
+                        "title": "Name",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_24h": {
+                        "title": "Transactions 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d": {
+                        "title": "Transactions 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d": {
+                        "title": "Transactions 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_24h_prev": {
+                        "title": "Transactions 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_7d_prev": {
+                        "title": "Transactions 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "transactions_30d_prev": {
+                        "title": "Transactions 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h": {
+                        "title": "Fees Burned 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d": {
+                        "title": "Fees Burned 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d": {
+                        "title": "Fees Burned 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h_prev": {
+                        "title": "Fees Burned 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d_prev": {
+                        "title": "Fees Burned 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d_prev": {
+                        "title": "Fees Burned 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_24h": {
+                        "title": "Unique Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_7d": {
+                        "title": "Unique Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_30d": {
+                        "title": "Unique Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_24h_prev": {
+                        "title": "Unique Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_7d_prev": {
+                        "title": "Unique Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_30d_prev": {
+                        "title": "Unique Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "last_updated_timestamp": {
+                        "title": "Last Updated Timestamp",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/statistics/tokens": {
+      "get": {
+        "summary": "Get Token Stats",
+        "description": "Return list of token stats.",
+        "operationId": "get_token_stats_api_v1_statistics_tokens_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Token Stats Api V1 Statistics Tokens Get",
+                  "items": {
+                    "title": "Token",
+                    "properties": {
+                      "address": {
+                        "title": "Address"
+                      },
+                      "name": {
+                        "title": "Name",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "symbol": {
+                        "title": "Symbol",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "decimals": {
+                        "title": "Decimals",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "is_nft": {
+                        "title": "Is Nft",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "contract_type": {
+                        "title": "Contract Type",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "volume_24h": {
+                        "title": "Volume 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "volume_7d": {
+                        "title": "Volume 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "volume_30d": {
+                        "title": "Volume 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "volume_24h_prev": {
+                        "title": "Volume 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "volume_7d_prev": {
+                        "title": "Volume 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "volume_30d_prev": {
+                        "title": "Volume 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ],
+                        "default": 0
+                      },
+                      "token_transfers_24h": {
+                        "title": "Token Transfers 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d": {
+                        "title": "Token Transfers 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d": {
+                        "title": "Token Transfers 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_24h_prev": {
+                        "title": "Token Transfers 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_7d_prev": {
+                        "title": "Token Transfers 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "token_transfers_30d_prev": {
+                        "title": "Token Transfers 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h": {
+                        "title": "Fees Burned 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d": {
+                        "title": "Fees Burned 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d": {
+                        "title": "Fees Burned 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_24h_prev": {
+                        "title": "Fees Burned 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_7d_prev": {
+                        "title": "Fees Burned 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "fees_burned_30d_prev": {
+                        "title": "Fees Burned 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_24h": {
+                        "title": "Unique Addresses 24H",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_7d": {
+                        "title": "Unique Addresses 7D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_30d": {
+                        "title": "Unique Addresses 30D",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_24h_prev": {
+                        "title": "Unique Addresses 24H Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_7d_prev": {
+                        "title": "Unique Addresses 7D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "unique_addresses_30d_prev": {
+                        "title": "Unique Addresses 30D Prev",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      },
+                      "last_updated_timestamp": {
+                        "title": "Last Updated Timestamp",
+                        "anyOf": [
+                          {},
+                          {}
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/statistics/exchanges/legacy": {
+      "get": {
+        "summary": "Get Exchange Prices",
+        "description": "Return list of delegations.",
+        "operationId": "get_exchange_prices_api_v1_statistics_exchanges_legacy_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "ExchangesLegacyResponse",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "result": {
+                      "title": "Result",
+                      "default": 200
+                    },
+                    "description": {
+                      "title": "Description",
+                      "default": ""
+                    },
+                    "totalData": {
+                      "title": "Totaldata",
+                      "anyOf": [
+                        {},
+                        {}
+                      ]
+                    },
+                    "data": {
+                      "title": "ExchangesLegacyResponseData",
+                      "required": [
+                        "createDate",
+                        "dailyRate",
+                        "marketCap",
+                        "marketName",
+                        "prePrice",
+                        "price",
+                        "tradeName",
+                        "volume"
+                      ],
+                      "properties": {
+                        "marketName": {
+                          "title": "Marketname"
+                        },
+                        "tradeName": {
+                          "title": "Tradename"
+                        },
+                        "createDate": {
+                          "title": "Createdate",
+                          "format": "date-time"
+                        },
+                        "price": {
+                          "title": "Price"
+                        },
+                        "prePrice": {
+                          "title": "Preprice"
+                        },
+                        "dailyRate": {
+                          "title": "Dailyrate",
+                          "anyOf": [
+                            {},
+                            {}
+                          ]
+                        },
+                        "volume": {
+                          "title": "Volume"
+                        },
+                        "marketCap": {
+                          "title": "Marketcap"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/addresses": {
+      "get": {
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Get Addresses",
+        "description": "get list of addresses",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Find by address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "is_contract",
+            "in": "query",
+            "description": "Contract addresses only",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "is_token",
+            "in": "query",
+            "description": "Token addresses only",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "is_nft",
+            "in": "query",
+            "description": "NFT addresses only",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "token_standard",
+            "in": "query",
+            "description": "Token standard, either irc2, irc3, irc31",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort by. name, balance, transaction_count, transaction_internal_count, token_transfer_count. Use leading `-` (ie -balance) for sort direction or omit for descending.",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/addresses/contracts": {
+      "get": {
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Get contracts",
+        "description": "get list of contracts",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "contract name search",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "is_token",
+            "in": "query",
+            "description": "tokens only",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "is_nft",
+            "in": "query",
+            "description": "NFTs only",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "token_standard",
+            "in": "query",
+            "description": "token standard, one of irc2,irc3,irc31",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "contract status, one of active, rejected, or pending",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort by. name, balance, transaction_count, transaction_internal_count, token_transfer_count. Use leading `-` (ie -balance) for sort direction or omit for descending.",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/addresses/details/{address}": {
+      "get": {
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Get Address Details",
+        "description": "get details of an address",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "find by address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/addresses/token-addresses/{address}": {
+      "get": {
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Get Token Addresses",
+        "description": "get list of token contracts by address",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/blocks": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Get Blocks",
+        "description": "get historical blocks",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "number",
+            "in": "query",
+            "description": "find by block number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "start_number",
+            "in": "query",
+            "description": "range by start block number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "end_number",
+            "in": "query",
+            "description": "range by end block number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "hash",
+            "in": "query",
+            "description": "find by block hash",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "find by block creator",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "desc or asc",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/blocks/timestamp/{timestamp}": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Get Block Details By Nearest Timestamp",
+        "description": "get details of a block based on timestamp in millisecond epoch time",
+        "parameters": [
+          {
+            "name": "timestamp",
+            "in": "path",
+            "description": "timestamp",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/blocks/{number}": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Get Block Details",
+        "description": "get details of a block",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "description": "block number",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/logs": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Get Logs",
+        "description": "get historical logs",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_number",
+            "in": "query",
+            "description": "skip to a block",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_start",
+            "in": "query",
+            "description": "For block range queries, a start block. Invalid with block_number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_end",
+            "in": "query",
+            "description": "For block range queries, an end block. Invalid with block_number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "transaction_hash",
+            "in": "query",
+            "description": "find by transaction hash",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "find by address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "method",
+            "in": "query",
+            "description": "find by method",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/stats": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get Stats",
+        "description": "get json with a summary of stats",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/stats/circulating-supply": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get Stats",
+        "description": "get circulating supply (total supply - burn wallet balance)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/stats/market-cap": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get Stats",
+        "description": "get mkt cap (Coin Gecko Price * circulating supply)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/stats/total-supply": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get Stats",
+        "description": "get total supply",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/supplies": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "summary": "Get Supplies",
+        "description": "get json with a summary of stats",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/supplies/circulating-supply": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "summary": "Get Supplies",
+        "description": "get circulating supply (total supply - burn wallet balance)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/supplies/market-cap": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "summary": "Get Supplies",
+        "description": "get mkt cap (Coin Gecko Price * circulating supply)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/supplies/total-supply": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "summary": "Get Supplies",
+        "description": "get total supply",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions",
+        "description": "get historical transactions",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "find by from address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "find by to address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "find by type",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_number",
+            "in": "query",
+            "description": "find by block number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "start_block_number",
+            "in": "query",
+            "description": "find by block number range",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "end_block_number",
+            "in": "query",
+            "description": "find by block number range",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "method",
+            "in": "query",
+            "description": "find by method",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "desc or asc",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV Response"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/address/{address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions by address",
+        "description": "get transactions by address",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/block-number/{block_number}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions by block_number",
+        "description": "get transactions by block_number",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_number",
+            "in": "path",
+            "description": "block_number",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/details/{hash}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transaction",
+        "description": "get details of a transaction",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "description": "transaction hash",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/icx/{address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get ICX Transactions by Address",
+        "description": "get ICX transactions to or from an address",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/internal/address/{address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get internal transactions by address",
+        "description": "Get internal transactions by address",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "find by address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/internal/block-number/{block_number}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get internal transactions by block number",
+        "description": "Get internal transactions by block number",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_number",
+            "in": "path",
+            "description": "block_number",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/internal/{hash}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get internal transactions by hash",
+        "description": "Get internal transactions by hash",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "hash",
+            "in": "path",
+            "description": "find by hash",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/token-holders/token-contract/{token_contract_address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get token holders by token contract",
+        "description": "get token holders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "token_contract_address",
+            "in": "path",
+            "description": "find by token contract address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/token-transfers": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get token transfers",
+        "description": "get historical token transfers",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "find by from address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "find by to address",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "block_number",
+            "in": "query",
+            "description": "find by block number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "start_block_number",
+            "in": "query",
+            "description": "find by block number range",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "end_block_number",
+            "in": "query",
+            "description": "find by block number range",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "token_contract_address",
+            "in": "query",
+            "description": "find by token contract",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "transaction_hash",
+            "in": "query",
+            "description": "find by transaction hash",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/token-transfers/address/{address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get token transfer by address",
+        "description": "get historical token transfers by address",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "find by address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/transactions/token-transfers/token-contract/{token_contract_address}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get token transfers by token contract",
+        "description": "get historical token transfers by token contract",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "amount of records",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip to a record",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "style": "form",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          },
+          {
+            "name": "token_contract_address",
+            "in": "path",
+            "description": "find by token contract address",
+            "required": true,
+            "deprecated": false,
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

@@ -71,6 +71,10 @@ class Settings(BaseSettings):
     LOG_INCLUDE_FIELDS: list[str] = ["timestamp", "message"]
     LOG_EXCLUDE_FIELDS: list[str] = []
 
+    # OpenAPI Merger
+    CACHE_DURATION: int = 300  # In seconds - 5 min
+    OPENAPI_ENDPOINT_PREFIX: str = "https://icon.community"
+
     model_config = SettingsConfigDict(
         case_sensitive=False,
     )
