@@ -20,18 +20,15 @@ async def get_merged_openapi_spec() -> dict:
     now = datetime.now()
     if _cache["data"] is not None and _cache["last_updated"] is not None:
         elapsed_time = (now - _cache["last_updated"]).total_seconds()
-        if elapsed_time < config.CACHE_DURATION:
+        if elapsed_time < config.OPENAPI_CACHE_DURATION:
             return _cache["data"]
 
-    endpoints_suffixes = [
-        'api/v1/docs/doc.json',
-        'api/v1/governance/docs/openapi.json',
-        'api/v1/contracts/docs/openapi.json',
-        'api/v1/statistics/docs/openapi.json',
+    schema_urls = [
+        config.OPENAPI_MAIN_ENDPOINT,
+        config.OPENAPI_CONTRACTS_ENDPOINT,
+        config.OPENAPI_GOVERNANCE_ENDPOINT,
+        config.OPENAPI_STATS_ENDPOINT,
     ]
-
-    schema_urls = get_openapi_urls(endpoint_suffixes=endpoints_suffixes,
-                                   base_url=config.OPENAPI_ENDPOINT_PREFIX)
 
     output = get_merged_openapi(schema_urls=schema_urls)
 
@@ -40,10 +37,6 @@ async def get_merged_openapi_spec() -> dict:
     _cache["last_updated"] = now
 
     return output
-
-
-def get_openapi_urls(endpoint_suffixes: List[str], base_url: str) -> List[str]:
-    return [f"{base_url}/{suffix}" for suffix in endpoint_suffixes]
 
 
 def get_merged_openapi(schema_urls: List[str], title: str = _cache['title']) -> Dict:
