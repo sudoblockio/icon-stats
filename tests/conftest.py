@@ -90,7 +90,7 @@ class EnvLoader:
         return env_vars
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def config_override(request):
     """
     Override the config with values in an .env.test file for tests. Needed for sensitive
