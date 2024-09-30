@@ -7,3 +7,4 @@ brotli-asgi~=1.1.0
 #starlette
 
 openapi_pydantic
+requests
