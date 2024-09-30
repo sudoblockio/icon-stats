@@ -14,7 +14,8 @@ class FetchSchema(OpenAPIOperation):
         if response.status_code == 200:
             return response.json()
         else:
-            raise Exception(f"Failed to Fetch URL : {url} with status code {response.status_code}")
+            raise Exception(
+                f"Failed to Fetch URL : {url} with status code {response.status_code}")
 
 
 class ResolveRefs(OpenAPIOperation):

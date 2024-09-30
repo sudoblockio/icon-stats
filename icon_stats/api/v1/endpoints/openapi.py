@@ -30,9 +30,10 @@ async def get_merged_openapi_spec() -> dict:
         'api/v1/statistics/docs/openapi.json',
     ]
 
-    schema_urls = get_openapi_urls(endpoint_suffixes=endpoints_suffixes,base_url=config.OPENAPI_ENDPOINT_PREFIX)
+    schema_urls = get_openapi_urls(endpoint_suffixes=endpoints_suffixes,
+                                   base_url=config.OPENAPI_ENDPOINT_PREFIX)
 
-    output =  get_merged_openapi(schema_urls=schema_urls)
+    output = get_merged_openapi(schema_urls=schema_urls)
 
     # Update the cache
     _cache["data"] = output
@@ -40,23 +41,17 @@ async def get_merged_openapi_spec() -> dict:
 
     return output
 
-def get_openapi_urls(endpoint_suffixes: List[str],base_url:str) -> List[str]:
+
+def get_openapi_urls(endpoint_suffixes: List[str], base_url: str) -> List[str]:
     return [f"{base_url}/{suffix}" for suffix in endpoint_suffixes]
 
 
-def get_merged_openapi(schema_urls: List[str],title:str = _cache['title']) -> Dict:
-
+def get_merged_openapi(schema_urls: List[str], title: str = _cache['title']) -> Dict:
     schema_processor = OpenAPIProcessor(
         fetch_schema=FetchSchema(),
         resolve_schema_refs=ResolveRefs(),
         validate_params=ValidateParams()
     )
-    schemas = schema_processor.process(schema_urls=schema_urls,title=title)
+    schemas = schema_processor.process(schema_urls=schema_urls, title=title)
 
     return schemas.model_dump(by_alias=True, exclude_none=True)
-
-
-
-
-
-
