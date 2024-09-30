@@ -4,9 +4,9 @@ import json
 
 from unittest.mock import patch, Mock
 
-from apisix.openapi_merger.main import main
-from apisix.openapi_merger.operations.operations import FetchSchema, ResolveRefs, ValidateParams
-from apisix.openapi_merger.operations.processor import OpenAPIProcessor
+from icon_stats.api.v1.endpoints.openapi import get_merged_openapi
+from icon_stats.openapi.operations import FetchSchema, ResolveRefs, ValidateParams
+from icon_stats.openapi.processor import OpenAPIProcessor
 
 FIXTURES_DIR = os.path.join(os.path.dirname(__file__), "fixtures")
 
@@ -63,12 +63,10 @@ def test_main(fixture_name, generate_input_url_fixture, cleanup_generated_files,
     mock_requests_post.return_value.status_code = 200
     mock_requests_post.return_value.json.return_value = {"swagger": "2.0"}
 
-    main([input_url], f"Test {fixture_name}", output_file)
+    data = get_merged_openapi([input_url], f"Test {fixture_name}")
 
-    assert os.path.exists(output_file)
-    with open(output_file, 'r') as f:
-        content = json.load(f)
-        assert content == {"swagger": "2.0"}
+
+    assert data == {"swagger": "2.0"}
 
 
 def test_fetch_schema():
@@ -206,12 +204,9 @@ def test_main_with_multiple_schemas(mock_requests_get, mock_requests_post, clean
     mock_requests_post.return_value.status_code = 200
     mock_requests_post.return_value.json.return_value = {"swagger": "2.0"}
 
-    main(schema_urls, "Combined APIs", output_file)
+    data = get_merged_openapi(schema_urls, "Combined APIs")
 
-    assert os.path.exists(output_file)
-    with open(output_file, 'r') as f:
-        content = json.load(f)
-        assert content == {"swagger": "2.0"}
+    assert data == {"swagger": "2.0"}
 
 
 def test_main_with_ignored_paths(mock_requests_get, mock_requests_post, cleanup_generated_files):
@@ -241,12 +236,9 @@ def test_main_with_ignored_paths(mock_requests_get, mock_requests_post, cleanup_
     mock_requests_post.return_value.status_code = 200
     mock_requests_post.return_value.json.return_value = {"swagger": "2.0"}
 
-    main([schema_url], "Test API", output_file)
+    data = get_merged_openapi([schema_url], "Combined APIs")
 
-    assert os.path.exists(output_file)
-    with open(output_file, 'r') as f:
-        content = json.load(f)
-        assert content == {"swagger": "2.0"}
+    assert data == {"swagger": "2.0"}
 
     # Verify that the /health path was ignored
     processor = OpenAPIProcessor(
@@ -266,4 +258,7 @@ def test_generate_output():
         "https://tracker.icon.community/api/v1/statistics/docs/openapi.json",
         "https://tracker.icon.community/api/v1/docs/doc.json",
     ]
-    main(schema_urls, title="Icon", output_file="icon-out.json")
+    schema_json_openapi = get_merged_openapi(schema_urls, title="Icon")
+
+    with open("icon-out.json", "w") as f:
+        json.dump(schema_json_openapi, f, indent=2)
