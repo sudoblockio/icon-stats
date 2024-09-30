@@ -79,13 +79,14 @@ class EnvLoader:
     def _set_env_from_file(self, filepath) -> list[tuple[str, str]]:
         """Get list of tuples from an env file to temporarily set them on tests."""
         env_vars = []
-        with open(filepath, "r") as f:
-            for line in f:
-                line = line.strip()  # Remove leading and trailing whitespace
-                if line and not line.startswith("#"):  # Ignore empty lines and comments
-                    key, value = line.split("=", 1)
-                    value = value.strip().strip('"').strip("'")
-                    env_vars.append((key, value))
+        if os.path.isfile(filepath):
+            with open(filepath, "r") as f:
+                for line in f:
+                    line = line.strip()  # Remove leading and trailing whitespace
+                    if line and not line.startswith("#"):  # Ignore empty lines and comments
+                        key, value = line.split("=", 1)
+                        value = value.strip().strip('"').strip("'")
+                        env_vars.append((key, value))
         return env_vars
 
 

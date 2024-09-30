@@ -5,3 +5,5 @@ fastapi_health
 brotli-asgi~=1.1.0
 #starlette~=0.14.2
 #starlette
+
+openapi_pydantic
