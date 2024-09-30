@@ -30,11 +30,7 @@ async def get_merged_openapi_spec() -> dict:
         'api/v1/statistics/docs/openapi.json',
     ]
 
-    additional_endpoints = [
-        'https://balanced.icon.community/api/v1/docs/openapi.json',
-    ]
-
-    schema_urls = get_openapi_urls(endpoint_suffixes=endpoints_suffixes,base_url=config.OPENAPI_ENDPOINT_PREFIX) + additional_endpoints
+    schema_urls = get_openapi_urls(endpoint_suffixes=endpoints_suffixes,base_url=config.OPENAPI_ENDPOINT_PREFIX)
 
     output =  get_merged_openapi(schema_urls=schema_urls)
 
