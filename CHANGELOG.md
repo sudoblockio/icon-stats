@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2](https://github.com/sudoblockio/icon-stats/compare/v0.2.1...v0.2.2) (2024-10-06)
+
+
+### Bug Fixes
+
+* add tags on router ([dbca0f4](https://github.com/sudoblockio/icon-stats/commit/dbca0f4d58855ea5856053df928a67d0e9470966))
+* remove endpoint balanced ([70e4043](https://github.com/sudoblockio/icon-stats/commit/70e4043c01db0991d5f640e1db30760e0c28f067))
+
 ## [0.2.1](https://github.com/sudoblockio/icon-stats/compare/v0.2.0...v0.2.1) (2024-03-23)
 
 
