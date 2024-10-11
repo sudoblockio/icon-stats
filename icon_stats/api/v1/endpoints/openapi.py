@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Dict, Optional, Any, List
+
 from fastapi import APIRouter
+
 from icon_stats.config import config
 from icon_stats.openapi.operations import FetchSchema, ResolveRefs, ValidateParams
 from icon_stats.openapi.processor import OpenAPIProcessor

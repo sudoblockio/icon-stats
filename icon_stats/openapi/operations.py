@@ -1,7 +1,9 @@
 import time
-from typing import Any, Dict
+from typing import Any, Dict, Optional
+
 import requests
 from pydantic import BaseModel
+
 from icon_stats.log import logger
 
 
@@ -11,7 +13,7 @@ class OpenAPIOperation(BaseModel):
 
 
 class FetchSchema(OpenAPIOperation):
-    def execute(self, url: str) -> Dict[str, Any]:
+    def execute(self, url: str) -> Optional[Dict[str, Any]]:
         max_retries = 10  # Predefined maximum number of retries
         retry_delay = 2  # Delay between retries in seconds
         retries = 0
@@ -25,25 +27,25 @@ class FetchSchema(OpenAPIOperation):
                     },
                 )
 
+                # If successful, return the response data
                 if response.status_code == 200:
                     return response.json()
 
+                logger.error(f"Failed: status code: {response.status_code} for URL: {url} response : {response.json()}")
+                return None
+
             except Exception as e:
+                # Only retry on exceptions
                 retries += 1
                 if retries < max_retries:
                     logger.warning(f"Retrying {retries}/{max_retries} after error: {e}")
                     time.sleep(retry_delay)
                 else:
-                    logger.error(
-                        f"Max retries exceeded for URL: {url}. Last error: {e}"
-                    )
-                    raise Exception(
-                        f"Max retries exceeded for URL: {url}. Last error: {e}"
-                    )
-
+                    logger.error(f"Max retries exceeded for URL: {url}. Last error: {e}")
+                    return None
 
 class ResolveRefs(OpenAPIOperation):
-    def execute(self, openapi_json: Dict[str, Any], base_url: str) -> Dict[str, Any]:
+    def execute(self, openapi_json: Dict[str, Any], base_url: str) -> Optional[Dict[str, Any]]:
         def _resolve(obj, url):
             if isinstance(obj, dict):
                 if "$ref" in obj:
@@ -55,7 +57,8 @@ class ResolveRefs(OpenAPIOperation):
                         if ref_response.status_code == 200:
                             ref_obj = ref_response.json()
                         else:
-                            raise Exception(f"Reference url={ref_url} not found.")
+                            logger.error(f"Reference URL not found: {ref_url}")
+                            return None
                         return _resolve(ref_obj, url)
                     else:
                         # internal reference
@@ -65,13 +68,20 @@ class ResolveRefs(OpenAPIOperation):
                         for part in ref_parts:
                             ref_obj = ref_obj.get(part)
                             if ref_obj is None:
-                                raise KeyError(f"Reference path not found: {ref_path}")
+                                logger.error(f"Reference path not found: {ref_path}")
+                                return None
                         return _resolve(ref_obj, url)
                 else:
                     for key, value in obj.items():
-                        obj[key] = _resolve(value, url)
+                        resolved_value = _resolve(value, url)
+                        if resolved_value is None:
+                            return None
+                        obj[key] = resolved_value
             elif isinstance(obj, list):
-                return [_resolve(item, url) for item in obj]
+                resolved_list = [_resolve(item, url) for item in obj]
+                if None in resolved_list:
+                    return None
+                return resolved_list
             return obj
 
         return _resolve(openapi_json, base_url)
