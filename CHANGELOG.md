@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/sudoblockio/icon-stats/compare/v0.2.2...v0.2.3) (2024-10-11)
+
+
+### Bug Fixes
+
+* capitalise router tags ([2641efc](https://github.com/sudoblockio/icon-stats/commit/2641efc1599f2aeb41166e641f54d59fd12ccb70))
+* openapi schema merger ([52840ba](https://github.com/sudoblockio/icon-stats/commit/52840ba4e642a30e24bfe87953e345f82275d7a4))
+
 ## [0.2.2](https://github.com/sudoblockio/icon-stats/compare/v0.2.1...v0.2.2) (2024-10-06)
 
 
