@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/sudoblockio/icon-stats/compare/v0.2.3...v0.2.4) (2024-10-11)
+
+
+### Bug Fixes
+
+* exception handling in open api merger ([733bbdc](https://github.com/sudoblockio/icon-stats/commit/733bbdcacf53e122f4d66b329d5c286cbfac3fbc))
+
 ## [0.2.3](https://github.com/sudoblockio/icon-stats/compare/v0.2.2...v0.2.3) (2024-10-11)
 
 
