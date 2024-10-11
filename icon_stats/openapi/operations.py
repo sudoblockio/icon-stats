@@ -1,6 +1,8 @@
+import time
 from typing import Any, Dict
 import requests
 from pydantic import BaseModel
+from icon_stats.log import logger
 
 
 class OpenAPIOperation(BaseModel):
@@ -10,21 +12,43 @@ class OpenAPIOperation(BaseModel):
 
 class FetchSchema(OpenAPIOperation):
     def execute(self, url: str) -> Dict[str, Any]:
-        response = requests.get(url=url)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(
-                f"Failed to Fetch URL : {url} with status code {response.status_code}")
+        max_retries = 10  # Predefined maximum number of retries
+        retry_delay = 2  # Delay between retries in seconds
+        retries = 0
+
+        while retries < max_retries:
+            try:
+                response = requests.get(
+                    url=url,
+                    headers={
+                        "User-Agent": "ICONStats/v1 (+https://tracker.icon.community)"
+                    },
+                )
+
+                if response.status_code == 200:
+                    return response.json()
+
+            except Exception as e:
+                retries += 1
+                if retries < max_retries:
+                    logger.warning(f"Retrying {retries}/{max_retries} after error: {e}")
+                    time.sleep(retry_delay)
+                else:
+                    logger.error(
+                        f"Max retries exceeded for URL: {url}. Last error: {e}"
+                    )
+                    raise Exception(
+                        f"Max retries exceeded for URL: {url}. Last error: {e}"
+                    )
 
 
 class ResolveRefs(OpenAPIOperation):
     def execute(self, openapi_json: Dict[str, Any], base_url: str) -> Dict[str, Any]:
         def _resolve(obj, url):
             if isinstance(obj, dict):
-                if '$ref' in obj:
-                    ref_path = obj['$ref']
-                    if not ref_path.startswith('#'):
+                if "$ref" in obj:
+                    ref_path = obj["$ref"]
+                    if not ref_path.startswith("#"):
                         # external reference
                         ref_url = f"{url}/{ref_path}"
                         ref_response = requests.get(ref_url)
@@ -35,8 +59,8 @@ class ResolveRefs(OpenAPIOperation):
                         return _resolve(ref_obj, url)
                     else:
                         # internal reference
-                        ref_path = ref_path.lstrip('#/')
-                        ref_parts = ref_path.split('/')
+                        ref_path = ref_path.lstrip("#/")
+                        ref_parts = ref_path.split("/")
                         ref_obj = openapi_json
                         for part in ref_parts:
                             ref_obj = ref_obj.get(part)
@@ -57,10 +81,10 @@ class ValidateParams(OpenAPIOperation):
     def execute(self, openapi_json: Dict[str, Any]) -> Dict[str, Any]:
         def _validate(obj):
             if isinstance(obj, dict):
-                if 'parameters' in obj:
-                    for param in obj['parameters']:
-                        if 'content' not in param and 'schema' not in param:
-                            param['schema'] = {"type": "string"}  # Default schema type
+                if "parameters" in obj:
+                    for param in obj["parameters"]:
+                        if "content" not in param and "schema" not in param:
+                            param["schema"] = {"type": "string"}  # Default schema type
                 for key, value in obj.items():
                     _validate(value)
             elif isinstance(obj, list):
