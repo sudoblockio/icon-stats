@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/sudoblockio/icon-stats/compare/v0.2.4...v0.2.5) (2024-10-18)
+
+
+### Bug Fixes
+
+* server url for openapi spec ([342fd7b](https://github.com/sudoblockio/icon-stats/commit/342fd7bfc9d6947596c9977633a9612008b72bd4))
+
 ## [0.2.4](https://github.com/sudoblockio/icon-stats/compare/v0.2.3...v0.2.4) (2024-10-11)
 
 
