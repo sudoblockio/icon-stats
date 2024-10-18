@@ -50,6 +50,8 @@ class Settings(BaseSettings):
     # Endpoints
     ICON_NODE_URL: str = "https://api.icon.community/api/v3"
     COMMUNITY_API_ENDPOINT: str = "https://tracker.icon.community"
+    LISBON_COMMUNITY_API_ENDPOINT: str = "https://lisbon.tracker.icon.community"
+    BERLIN_COMMUNITY_API_ENDPOINT: str = "https://berlin.tracker.icon.community"
 
     # DB
     db: DbConfigs = Field(default_factory=DbConfigs)
