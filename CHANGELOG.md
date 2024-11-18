@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/sudoblockio/icon-stats/compare/v0.2.5...v0.2.6) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove get merge openapi spec path ([ee68b6c](https://github.com/sudoblockio/icon-stats/commit/ee68b6c667ffac8c01b1abe039c7da10774b938d))
+
 ## [0.2.5](https://github.com/sudoblockio/icon-stats/compare/v0.2.4...v0.2.5) (2024-10-18)
 
 
