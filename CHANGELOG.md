@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.7](https://github.com/sudoblockio/icon-stats/compare/v0.2.6...v0.2.7) (2024-11-30)
+
+
+### Bug Fixes
+
+* session close logic ([aa95e79](https://github.com/sudoblockio/icon-stats/commit/aa95e79723e16e675c725f30dba37ec52e9d73fb))
+
 ## [0.2.6](https://github.com/sudoblockio/icon-stats/compare/v0.2.5...v0.2.6) (2024-11-18)
 
 
