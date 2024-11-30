@@ -4,4 +4,5 @@ pytest-cov
 pytest-asyncio
 pytest-order
 testcontainers
-httpx
+httpx<0.28.0
+pytest-httpx
