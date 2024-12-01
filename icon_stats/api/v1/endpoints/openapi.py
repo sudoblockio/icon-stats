@@ -48,5 +48,7 @@ def get_merged_openapi(schema_urls: List[str], title: str = _cache['title']) -> 
         validate_params=ValidateParams()
     )
     schemas = schema_processor.process(schema_urls=schema_urls, title=title)
+    output = schemas.model_dump(by_alias=True, exclude_none=True)
+    output['paths'].pop('/api/v1/statistics/openapi')
 
-    return schemas.model_dump(by_alias=True, exclude_none=True)
+    return output
