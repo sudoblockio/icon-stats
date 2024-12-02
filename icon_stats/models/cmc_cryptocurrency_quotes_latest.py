@@ -26,10 +26,11 @@ class CmcListingsLatestQuote(SQLModel, table=True):
     # last_updated: datetime.datetime = Field(
     #     sa_column=Column(DateTime(timezone=True), primary_key=True)
     # )
-    last_updated: datetime.datetime = Field(
-        sa_column=Column(DateTime(timezone=True)),
-        primary_key=True,
-    )
+    # last_updated: datetime.datetime = Field(
+    #     sa_column=Column(DateTime(timezone=True)),
+    #     primary_key=True,
+    # )
+    last_updated: datetime.datetime = Column(DateTime(timezone=True), primary_key=True)
 
     __table_args__ = {'schema': 'stats'}
 
