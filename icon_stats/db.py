@@ -73,8 +73,9 @@ async def get_session(db_name: str = "stats"):
             yield session
         except Exception as e:
             await session.rollback()
-            await session.close()
             raise e
+        finally:
+            await session.close()
 
 
 # Generic sqlmodel table
