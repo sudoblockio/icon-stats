@@ -101,35 +101,25 @@ jobs:
       max-parallel: 1
       matrix:
         include:
-          - cluster: prod-ams
+          - cluster: cluster2
             network_name: mainnet
             network_version: v2
-          - cluster: prod-ams
+          - cluster: cluster2
             network_name: lisbon
             network_version: v2
-          - cluster: prod-ams
+          - cluster: cluster2
             network_name: berlin
             network_version: v2
 
-#          - cluster: cluster2
-#            network_name: mainnet
-#            network_version: v2
-#          - cluster: cluster2
-#            network_name: lisbon
-#            network_version: v2
-#          - cluster: cluster2
-#            network_name: berlin
-#            network_version: v2
-#
-#          - cluster: cluster1
-#            network_name: mainnet
-#            network_version: v2
-#          - cluster: cluster1
-#            network_name: lisbon
-#            network_version: v2
-#          - cluster: cluster1
-#            network_name: berlin
-#            network_version: v2
+          - cluster: prod-sng
+            network_name: mainnet
+            network_version: v2
+          - cluster: prod-sng
+            network_name: lisbon
+            network_version: v2
+          - cluster: prod-sng
+            network_name: berlin
+            network_version: v2
 
     steps:
 
