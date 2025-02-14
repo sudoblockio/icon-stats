@@ -52,6 +52,7 @@ class Settings(BaseSettings):
     COMMUNITY_API_ENDPOINT: str = "https://tracker.icon.community"
     LISBON_COMMUNITY_API_ENDPOINT: str = "https://lisbon.tracker.icon.community"
     BERLIN_COMMUNITY_API_ENDPOINT: str = "https://berlin.tracker.icon.community"
+    BALANCED_API_ENDPOINT: str = "https://balanced.icon.community"
 
     # DB
     db: DbConfigs = Field(default_factory=DbConfigs)
