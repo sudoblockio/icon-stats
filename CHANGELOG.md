@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.7](https://github.com/sudoblockio/icon-stats/compare/v0.2.6...v0.2.7) (2025-02-14)
+
+
+### Bug Fixes
+
+* add balanced to openapi merger ([fd6fd1d](https://github.com/sudoblockio/icon-stats/commit/fd6fd1d1dd81999e6ec0dca66fe865eed376657a))
+* session close logic ([aa95e79](https://github.com/sudoblockio/icon-stats/commit/aa95e79723e16e675c725f30dba37ec52e9d73fb))
+
 ## [0.2.6](https://github.com/sudoblockio/icon-stats/compare/v0.2.5...v0.2.6) (2024-11-18)
 
 
