@@ -76,9 +76,18 @@ class Settings(BaseSettings):
     # OpenAPI Merger
     OPENAPI_CACHE_DURATION: int = 30 * 60  # In seconds
     OPENAPI_MAIN_ENDPOINT: str = "https://tracker.icon.community/api/v1/docs/doc.json"
-    OPENAPI_CONTRACTS_ENDPOINT: str = "https://tracker.icon.community/api/v1/contracts/docs/openapi.json"
-    OPENAPI_GOVERNANCE_ENDPOINT: str = "https://tracker.icon.community/api/v1/governance/docs/openapi.json"
-    OPENAPI_STATS_ENDPOINT: str = "https://tracker.icon.community/api/v1/statistics/docs/openapi.json"
+    OPENAPI_CONTRACTS_ENDPOINT: str = (
+        "https://tracker.icon.community/api/v1/contracts/docs/openapi.json"
+    )
+    OPENAPI_GOVERNANCE_ENDPOINT: str = (
+        "https://tracker.icon.community/api/v1/governance/docs/openapi.json"
+    )
+    OPENAPI_STATS_ENDPOINT: str = (
+        "https://tracker.icon.community/api/v1/statistics/docs/openapi.json"
+    )
+    OPENAPI_BALANCED_ENDPOINT: str = (
+        "https://balanced.icon.community/api/v1/docs/openapi.json"
+    )
 
     model_config = SettingsConfigDict(
         case_sensitive=False,
