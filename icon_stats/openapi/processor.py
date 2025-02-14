@@ -41,6 +41,7 @@ class OpenAPIProcessor(BaseModel):
                 {"url": config.COMMUNITY_API_ENDPOINT},
                 {"url": config.LISBON_COMMUNITY_API_ENDPOINT},
                 {"url": config.BERLIN_COMMUNITY_API_ENDPOINT},
+                {"url": config.BALANCED_API_ENDPOINT},
             ],
             paths={},
             tags=[
