@@ -38,9 +38,7 @@ class OpenAPIProcessor(BaseModel):
                 version="v0.0.1",
             ),
             servers=[
-                {
-                    "url": config.COMMUNITY_API_ENDPOINT,
-                },
+                {"url": config.COMMUNITY_API_ENDPOINT},
                 {"url": config.LISBON_COMMUNITY_API_ENDPOINT},
                 {"url": config.BERLIN_COMMUNITY_API_ENDPOINT},
             ],
