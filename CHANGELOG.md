@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.9](https://github.com/sudoblockio/icon-stats/compare/v0.2.8...v0.2.9) (2025-02-20)
+
+
+### Bug Fixes
+
+* openapi schema generator ([4890a96](https://github.com/sudoblockio/icon-stats/commit/4890a969be31cdfc23b8e3a0b9e720cbf6bee02b))
+
 ## [0.2.8](https://github.com/sudoblockio/icon-stats/compare/v0.2.7...v0.2.8) (2025-02-20)
 
 
