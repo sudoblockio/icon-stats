@@ -51,9 +51,15 @@ class OpenAPIProcessor(BaseModel):
         )
 
         for url in schema_urls:
-            base_url = url.rsplit("/", 1)[0]
+            is_url = url.startswith(('http://', 'https://'))
+            if is_url:
+                base_url = url.rsplit("/", 1)[0]
+                tag_name = self.get_tag_from_url(url)
+            else:
+                base_url = ""
+                tag_name = "icon"
             openapi_json = self.fetch_schema.execute(url)
-            tag_name = self.get_tag_from_url(url)
+
 
             if openapi_json is None:
                 logger.info(f"Empty schema returned for URL: {url}")
