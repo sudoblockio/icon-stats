@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/sudoblockio/icon-stats/compare/v0.2.7...v0.2.8) (2025-02-20)
+
+
+### Bug Fixes
+
+* key error removing the path after merging ([f77f3c8](https://github.com/sudoblockio/icon-stats/commit/f77f3c84610baa7ac1ce814acf5e7c80dc607670))
+
 ## [0.2.7](https://github.com/sudoblockio/icon-stats/compare/v0.2.6...v0.2.7) (2025-02-14)
 
 
