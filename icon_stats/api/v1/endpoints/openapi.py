@@ -3,6 +3,7 @@ from typing import Dict, Optional, Any, List
 
 from fastapi import APIRouter
 
+from icon_stats.log import logger
 from icon_stats.config import config
 from icon_stats.openapi.operations import FetchSchema, ResolveRefs, ValidateParams
 from icon_stats.openapi.processor import OpenAPIProcessor
@@ -29,6 +30,7 @@ async def get_merged_openapi_spec() -> dict:
         config.OPENAPI_MAIN_ENDPOINT,
         config.OPENAPI_CONTRACTS_ENDPOINT,
         config.OPENAPI_GOVERNANCE_ENDPOINT,
+        config.OPENAPI_BALANCED_ENDPOINT,
         config.OPENAPI_STATS_ENDPOINT,
     ]
 
@@ -49,6 +51,11 @@ def get_merged_openapi(schema_urls: List[str], title: str = _cache['title']) -> 
     )
     schemas = schema_processor.process(schema_urls=schema_urls, title=title)
     output = schemas.model_dump(by_alias=True, exclude_none=True)
-    output['paths'].pop('/api/v1/statistics/openapi')
+    logger.info("schema merged")
+
+    try:
+        output['paths'].pop('/api/v1/statistics/openapi')
+    except KeyError as e:
+        logger.error(f"Failed to delete {e}")
 
     return output
