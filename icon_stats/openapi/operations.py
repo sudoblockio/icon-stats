@@ -1,3 +1,5 @@
+import json
+import os
 import time
 from typing import Any, Dict, Optional
 
@@ -13,7 +15,14 @@ class OpenAPIOperation(BaseModel):
 
 
 class FetchSchema(OpenAPIOperation):
-    def execute(self, url: str) -> Optional[Dict[str, Any]]:
+
+    def execute(self,url_or_path:str) -> Optional[Dict[str,Any]]:
+        if url_or_path.startswith(('http://', 'https://')):
+            return self._fetch_from_url(url_or_path)
+        else:
+            return self._load_from_file(url_or_path)
+
+    def _fetch_from_url(self, url: str) -> Optional[Dict[str, Any]]:
         max_retries = 10  # Predefined maximum number of retries
         retry_delay = 2  # Delay between retries in seconds
         retries = 0
@@ -43,6 +52,23 @@ class FetchSchema(OpenAPIOperation):
                 else:
                     logger.error(f"Max retries exceeded for URL: {url}. Last error: {e}")
                     return None
+
+    def _load_from_file(self, file_path: str) -> Optional[Dict[str, Any]]:
+        possible_paths = [
+            os.path.join(os.path.dirname(__file__), file_path),
+        ]
+
+        # Try all possible paths
+        for path in possible_paths:
+            try:
+                with open(path, 'r') as f:
+                    schema = json.load(f)
+                    logger.info(f"Successfully loaded schema from file: {path}")
+                    return schema
+            except Exception as e:
+                logger.debug(f"Failed to load from {path}: {e}")
+                continue
+        return None
 
 class ResolveRefs(OpenAPIOperation):
     def execute(self, openapi_json: Dict[str, Any], base_url: str) -> Optional[Dict[str, Any]]:

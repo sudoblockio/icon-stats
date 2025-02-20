@@ -1,0 +1,1747 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "ICON Statistics Service",
+        "description": "Ecosystem wide statistics.",
+        "version": "v0.2.8"
+    },
+    "paths": {
+        "/api/v1/statistics/ecosystem": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Ecosystem Stats",
+                "description": "Return list of ecosystem stats.",
+                "operationId": "get_ecosystem_stats_api_v1_statistics_ecosystem_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Ecosystem"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Ecosystem Stats Api V1 Statistics Ecosystem Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statistics/applications": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Application Stats",
+                "description": "Return list of application stats.",
+                "operationId": "get_application_stats_api_v1_statistics_applications_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Application"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Application Stats Api V1 Statistics Applications Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statistics/contracts": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Contract Stats",
+                "description": "Return list of contract stats.",
+                "operationId": "get_contract_stats_api_v1_statistics_contracts_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contract"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Contract Stats Api V1 Statistics Contracts Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statistics/tokens": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Token Stats",
+                "description": "Return list of token stats.",
+                "operationId": "get_token_stats_api_v1_statistics_tokens_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Token"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Token Stats Api V1 Statistics Tokens Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statistics/exchanges/legacy": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Exchange Prices",
+                "description": "Return list of delegations.",
+                "operationId": "get_exchange_prices_api_v1_statistics_exchanges_legacy_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExchangesLegacyResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statistics/openapi": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get Merged Openapi Spec",
+                "description": "Combine the openapi specs from multiple data sources by using a cache.",
+                "operationId": "get_merged_openapi_spec_api_v1_statistics_openapi_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "Response Get Merged Openapi Spec Api V1 Statistics Openapi Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Endpoint",
+                "operationId": "endpoint_health_get",
+                "parameters": [
+                    {
+                        "name": "db_name",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "stats",
+                            "title": "Db Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Application": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Url"
+                    },
+                    "logo": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Logo"
+                    },
+                    "transactions_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H"
+                    },
+                    "transactions_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D"
+                    },
+                    "transactions_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D"
+                    },
+                    "transactions_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H Prev"
+                    },
+                    "transactions_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D Prev"
+                    },
+                    "transactions_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D Prev"
+                    },
+                    "fees_burned_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H"
+                    },
+                    "fees_burned_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D"
+                    },
+                    "fees_burned_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D"
+                    },
+                    "fees_burned_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H Prev"
+                    },
+                    "fees_burned_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D Prev"
+                    },
+                    "fees_burned_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D Prev"
+                    },
+                    "transaction_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 24H"
+                    },
+                    "transaction_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 7D"
+                    },
+                    "transaction_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 30D"
+                    },
+                    "transaction_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 24H Prev"
+                    },
+                    "transaction_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 7D Prev"
+                    },
+                    "transaction_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 30D Prev"
+                    },
+                    "token_transfers_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H"
+                    },
+                    "token_transfers_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D"
+                    },
+                    "token_transfers_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D"
+                    },
+                    "token_transfers_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H Prev"
+                    },
+                    "token_transfers_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D Prev"
+                    },
+                    "token_transfers_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D Prev"
+                    },
+                    "volume_24h": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 24H"
+                    },
+                    "volume_7d": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 7D"
+                    },
+                    "volume_30d": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 30D"
+                    },
+                    "volume_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 24H Prev"
+                    },
+                    "volume_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 7D Prev"
+                    },
+                    "volume_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 30D Prev"
+                    },
+                    "token_transfer_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 24H"
+                    },
+                    "token_transfer_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 7D"
+                    },
+                    "token_transfer_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 30D"
+                    },
+                    "token_transfer_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 24H Prev"
+                    },
+                    "token_transfer_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 7D Prev"
+                    },
+                    "token_transfer_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 30D Prev"
+                    },
+                    "last_updated_timestamp": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Last Updated Timestamp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "Application"
+            },
+            "Contract": {
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "title": "Address"
+                    },
+                    "application_id": {
+                        "type": "string",
+                        "title": "Application Id"
+                    },
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "transactions_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H"
+                    },
+                    "transactions_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D"
+                    },
+                    "transactions_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D"
+                    },
+                    "transactions_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H Prev"
+                    },
+                    "transactions_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D Prev"
+                    },
+                    "transactions_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D Prev"
+                    },
+                    "fees_burned_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H"
+                    },
+                    "fees_burned_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D"
+                    },
+                    "fees_burned_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D"
+                    },
+                    "fees_burned_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H Prev"
+                    },
+                    "fees_burned_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D Prev"
+                    },
+                    "fees_burned_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D Prev"
+                    },
+                    "unique_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 24H"
+                    },
+                    "unique_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 7D"
+                    },
+                    "unique_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 30D"
+                    },
+                    "unique_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 24H Prev"
+                    },
+                    "unique_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 7D Prev"
+                    },
+                    "unique_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 30D Prev"
+                    },
+                    "last_updated_timestamp": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Last Updated Timestamp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "address",
+                    "application_id"
+                ],
+                "title": "Contract"
+            },
+            "Ecosystem": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "transactions_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H"
+                    },
+                    "transactions_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D"
+                    },
+                    "transactions_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D"
+                    },
+                    "transactions_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 24H Prev"
+                    },
+                    "transactions_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 7D Prev"
+                    },
+                    "transactions_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transactions 30D Prev"
+                    },
+                    "fees_burned_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H"
+                    },
+                    "fees_burned_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D"
+                    },
+                    "fees_burned_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D"
+                    },
+                    "fees_burned_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H Prev"
+                    },
+                    "fees_burned_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D Prev"
+                    },
+                    "fees_burned_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D Prev"
+                    },
+                    "transaction_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 24H"
+                    },
+                    "transaction_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 7D"
+                    },
+                    "transaction_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 30D"
+                    },
+                    "transaction_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 24H Prev"
+                    },
+                    "transaction_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 7D Prev"
+                    },
+                    "transaction_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Transaction Addresses 30D Prev"
+                    },
+                    "token_transfers_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H"
+                    },
+                    "token_transfers_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D"
+                    },
+                    "token_transfers_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D"
+                    },
+                    "token_transfers_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H Prev"
+                    },
+                    "token_transfers_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D Prev"
+                    },
+                    "token_transfers_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D Prev"
+                    },
+                    "token_transfer_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 24H"
+                    },
+                    "token_transfer_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 7D"
+                    },
+                    "token_transfer_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 30D"
+                    },
+                    "token_transfer_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 24H Prev"
+                    },
+                    "token_transfer_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 7D Prev"
+                    },
+                    "token_transfer_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfer Addresses 30D Prev"
+                    },
+                    "last_updated_timestamp": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Last Updated Timestamp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "Ecosystem"
+            },
+            "ExchangesLegacyResponse": {
+                "properties": {
+                    "result": {
+                        "type": "integer",
+                        "title": "Result",
+                        "default": 200
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "default": ""
+                    },
+                    "totalData": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Totaldata"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ExchangesLegacyResponseData"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data"
+                ],
+                "title": "ExchangesLegacyResponse"
+            },
+            "ExchangesLegacyResponseData": {
+                "properties": {
+                    "marketName": {
+                        "type": "string",
+                        "title": "Marketname"
+                    },
+                    "tradeName": {
+                        "type": "string",
+                        "title": "Tradename"
+                    },
+                    "createDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Createdate"
+                    },
+                    "price": {
+                        "type": "number",
+                        "title": "Price"
+                    },
+                    "prePrice": {
+                        "type": "number",
+                        "title": "Preprice"
+                    },
+                    "dailyRate": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Dailyrate"
+                    },
+                    "volume": {
+                        "type": "number",
+                        "title": "Volume"
+                    },
+                    "marketCap": {
+                        "type": "number",
+                        "title": "Marketcap"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "marketName",
+                    "tradeName",
+                    "createDate",
+                    "price",
+                    "prePrice",
+                    "dailyRate",
+                    "volume",
+                    "marketCap"
+                ],
+                "title": "ExchangesLegacyResponseData"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "Token": {
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "title": "Address"
+                    },
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "symbol": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Symbol"
+                    },
+                    "decimals": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Decimals"
+                    },
+                    "is_nft": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Is Nft"
+                    },
+                    "contract_type": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Contract Type"
+                    },
+                    "volume_24h": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 24H",
+                        "default": 0
+                    },
+                    "volume_7d": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 7D",
+                        "default": 0
+                    },
+                    "volume_30d": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 30D",
+                        "default": 0
+                    },
+                    "volume_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 24H Prev",
+                        "default": 0
+                    },
+                    "volume_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 7D Prev",
+                        "default": 0
+                    },
+                    "volume_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Volume 30D Prev",
+                        "default": 0
+                    },
+                    "token_transfers_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H"
+                    },
+                    "token_transfers_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D"
+                    },
+                    "token_transfers_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D"
+                    },
+                    "token_transfers_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 24H Prev"
+                    },
+                    "token_transfers_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 7D Prev"
+                    },
+                    "token_transfers_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Token Transfers 30D Prev"
+                    },
+                    "fees_burned_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H"
+                    },
+                    "fees_burned_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D"
+                    },
+                    "fees_burned_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D"
+                    },
+                    "fees_burned_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 24H Prev"
+                    },
+                    "fees_burned_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 7D Prev"
+                    },
+                    "fees_burned_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Fees Burned 30D Prev"
+                    },
+                    "unique_addresses_24h": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 24H"
+                    },
+                    "unique_addresses_7d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 7D"
+                    },
+                    "unique_addresses_30d": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 30D"
+                    },
+                    "unique_addresses_24h_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 24H Prev"
+                    },
+                    "unique_addresses_7d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 7D Prev"
+                    },
+                    "unique_addresses_30d_prev": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unique Addresses 30D Prev"
+                    },
+                    "last_updated_timestamp": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Last Updated Timestamp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "address"
+                ],
+                "title": "Token"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "icon-stats",
+            "description": "Ecosystem wide statistics."
+        }
+    ]
+}

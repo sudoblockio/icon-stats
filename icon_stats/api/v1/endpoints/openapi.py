@@ -31,7 +31,7 @@ async def get_merged_openapi_spec() -> dict:
         config.OPENAPI_CONTRACTS_ENDPOINT,
         config.OPENAPI_GOVERNANCE_ENDPOINT,
         config.OPENAPI_BALANCED_ENDPOINT,
-        config.OPENAPI_STATS_ENDPOINT,
+        "stats.json"
     ]
 
     output = get_merged_openapi(schema_urls=schema_urls)
